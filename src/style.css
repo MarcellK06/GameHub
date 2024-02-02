@@ -23,11 +23,13 @@ body {
     vertical-align: bottom;
     align-items: center;
     color: rgb(219, 219, 219);
+    cursor: pointer;
 }
 
 
 nav{
     background: #1e1d32;
+    padding: 20px !important;
   
 }
 .nav-link{
@@ -45,9 +47,81 @@ nav{
     border-radius: 50%;
     padding: 2px;
     font-size: 10px;
-    margin-top: -6px !important;
+    margin-top: -7px !important;
     z-index: 99;
-    margin-left: -8px;
-    height: 20px;
-    width: 20px;
+    margin-left: -13px;
+    height: 25px;
+    width: 25px;
+    border: 3px solid #1e1d32;
+}
+.alert-dd{
+    border-radius: 0 !important;
+    background: #26253f !important;
+    width: 40vh !important;
+}
+.alert-item:hover{
+    background: #403e6a !important;
+    transition: ease-in-out 0.3s;
+    cursor: pointer;
+}
+.alert-avatar{
+    width: 10%;
+    border-radius: 50%;
+    margin-top: -4px;
+}
+.chat-avatar{
+    width: 3%;
+    border-radius: 50%;
+
+}
+.friendslist{
+    background: #1e1d32;
+    height: auto;
+    overflow-y: scroll;
+    border-top: 1px solid black;
+}
+.chatbox .header{
+    background-color: #1e1d32;
+    padding: 10px;
+}
+.online{
+    position: absolute;
+    margin-left: 10px;
+    border: 0.6px solid lime !important;
+    border-radius: 50%;
+    height: 7px !important;
+    width: 7px !important;
+    margin-top: 10px;
+    background-color: lime;
+}
+.offline{
+    position: absolute;
+    margin-left: 10px;
+    border: 0.6px solid red !important;
+    border-radius: 50%;
+    height: 7px !important;
+    width: 7px !important;
+    margin-top: 10px;
+    background-color: red;
+}
+.chatbox .message{
+    background: var(--mailcolor);
+    padding: 10px;
+    border-radius: 25px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+.chatbox .inputs{
+    background: #1e1d32;
+    position: fixed;
+    bottom: 0;
+    padding: 15px;
+    width: 100%;
+}
+.chatbox .inputs input{
+    background: #00000000;
+    border-radius: 30px;
+}
+.chatbox .inputs input::placeholder{
+    color: var(--mailcolor)
 }

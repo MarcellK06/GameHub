@@ -22,9 +22,9 @@ function Home() {
   const navLink = [
     new NavLink(1, "Home", "/", "GameHub Főoldal"),
     new NavLink(6, "rólunk", "/about", "GameHub  Rólunk"),
-    new NavLink(6, "Könyvtár", "/konyvtar", "GameHub Könyvtár"),
-    new NavLink(6, "barátok", "/78", "GameHub Barárok"),
-    new NavLink(6, "Jatékok", "/78", "GameHub Játékok"),
+    new NavLink(6, "Könyvtár", "/library", "GameHub Könyvtár"),
+    new NavLink(6, "barátok", "/friends", "GameHub Barárok"),
+    new NavLink(6, "Játékok", "/games", "GameHub Játékok"),
   ];
   return (
     <>
@@ -74,20 +74,40 @@ function Home() {
               </ul>
             </div>
             <div className="ms-auto d-flex">
-            
               <div className="dropdown">
                 <button
                   className="btn  dropdown-toggle"
                   type="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false">
-                   <FaBell size={22}  className=""/>
-                   <span className="bellcount">9+</span>
+                  <FaBell size={22} className="" />
+                  <span className="bellcount">9+</span>
                 </button>
-                <div className="dropdown-menu">
-
+                <div className="dropdown-menu alert-dd ">
+                  <div className="alert-item p-3">
+                    <div className="d-flex justify-content-between">
+                      Bárát felkérés érkezett tőle: tibor_paragh{" "}
+                      {/*név max 12 karakter pl 123456789111... */}
+                      <img
+                        src="https://tr.rbxcdn.com/38c6edcb50633730ff4cf39ac8859840/420/420/Hat/Png"
+                        alt=""
+                        className="alert-avatar"
+                      />
+                    </div>
+                    <p className="text-secondary">Ma 13:23-kor</p>
+                  </div>
+                  <div className="alert-item p-3">
+                    <div className="d-flex justify-content-between">
+                      tibor_paragh, üzent neked.
+                      <img
+                        src="https://tr.rbxcdn.com/38c6edcb50633730ff4cf39ac8859840/420/420/Hat/Png"
+                        alt=""
+                        className="alert-avatar"
+                      />
+                    </div>
+                    <p className="text-secondary">Ma 13:23-kor</p>
+                  </div>
                 </div>
-               
               </div>
             </div>
           </div>
