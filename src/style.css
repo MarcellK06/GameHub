@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+body {
+
+    margin: 0;
+    background: rgb(7, 9, 21) !important;
+    font-family: 'Nunito', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+*{
+    color :white;
+}
+:root{
+    --mailcolor: #d8087c;
+}
+.homem{
+    display: flex;
+    place-items: center;
+    height: 100vh;
+}
+.login_info .login, .email{
+    display: flex;
+    vertical-align: bottom;
+    align-items: center;
+    color: rgb(219, 219, 219);
+}
+
+
+nav{
+    background: #1e1d32;
+  
+}
+.nav-link{
+    color: white !important;
+    text-transform: uppercase;
+    font-weight: bold !important;
+    margin-left: 20px;
+}
+.navActive{
+    color: var(--mailcolor) !important;
+}
+.bellcount{
+    position:absolute;
+    background: var(--mailcolor);
+    border-radius: 50%;
+    padding: 2px;
+    font-size: 10px;
+    margin-top: -6px !important;
+    z-index: 99;
+    margin-left: -8px;
+    height: 20px;
+    width: 20px;
+}
