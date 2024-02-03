@@ -1,152 +1,158 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
 body {
+  margin: 0;
+  background: rgb(7, 9, 21) !important;
+  font-family: "Nunito", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+* {
+  color: white;
+}
+:root {
+  --mailcolor: #d8087c;
+}
+.homem {
+  display: flex;
+  place-items: center;
+  height: 100vh;
+}
+.login_info .login,
+.email {
+  display: flex;
+  vertical-align: bottom;
+  align-items: center;
+  color: rgb(219, 219, 219);
+  cursor: pointer;
+}
 
-    margin: 0;
-    background: rgb(7, 9, 21) !important;
-    font-family: 'Nunito', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+nav {
+  background: #1e1d32;
+  padding: 20px !important;
 }
-*{
-    color :white;
+.nav-link {
+  color: white !important;
+  text-transform: uppercase;
+  font-weight: bold !important;
+  margin-left: 20px;
 }
-:root{
-    --mailcolor: #d8087c;
+.navActive {
+  color: var(--mailcolor) !important;
 }
-.homem{
-    display: flex;
-    place-items: center;
-    height: 100vh;
+.bellcount {
+  position: absolute;
+  background: var(--mailcolor);
+  border-radius: 50%;
+  padding: 2px;
+  font-size: 10px;
+  margin-top: -7px !important;
+  z-index: 99;
+  margin-left: -13px;
+  height: 25px;
+  width: 25px;
+  border: 3px solid #1e1d32;
 }
-.login_info .login, .email{
-    display: flex;
-    vertical-align: bottom;
-    align-items: center;
-    color: rgb(219, 219, 219);
-    cursor: pointer;
+.alert-dd {
+  border-radius: 0 !important;
+  background: #26253f !important;
+  width: 100% !important;
 }
-
-
-nav{
-    background: #1e1d32;
-    padding: 20px !important;
-  
+.alert-item:hover {
+  background: #403e6a !important;
+  transition: ease-in-out 0.3s;
+  cursor: pointer;
 }
-.nav-link{
-    color: white !important;
-    text-transform: uppercase;
-    font-weight: bold !important;
-    margin-left: 20px;
+.alert-avatar {
+  width: 10%;
+  border-radius: 50%;
+  margin-top: -4px;
 }
-.navActive{
-    color: var(--mailcolor) !important;
+.chat-avatar {
+  width: 3%;
+  border-radius: 50%;
 }
-.bellcount{
-    position:absolute;
-    background: var(--mailcolor);
-    border-radius: 50%;
-    padding: 2px;
-    font-size: 10px;
-    margin-top: -7px !important;
-    z-index: 99;
-    margin-left: -13px;
-    height: 25px;
-    width: 25px;
-    border: 3px solid #1e1d32;
+.friendslist {
+  background: #1e1d32;
+  height: auto;
+  overflow-y: scroll;
+  border-top: 1px solid black;
 }
-.alert-dd{
-    border-radius: 0 !important;
-    background: #26253f !important;
-    width: 100% !important;
+.chatbox .header {
+  background-color: #1e1d32;
+  padding: 10px;
 }
-.alert-item:hover{
-    background: #403e6a !important;
-    transition: ease-in-out 0.3s;
-    cursor: pointer;
+.online {
+  position: absolute;
+  margin-left: 10px;
+  border: 0.6px solid lime !important;
+  border-radius: 50%;
+  height: 7px !important;
+  width: 7px !important;
+  margin-top: 10px;
+  background-color: lime;
 }
-.alert-avatar{
-    width: 10%;
-    border-radius: 50%;
-    margin-top: -4px;
+.offline {
+  position: absolute;
+  margin-left: 10px;
+  border: 0.6px solid red !important;
+  border-radius: 50%;
+  height: 7px !important;
+  width: 7px !important;
+  margin-top: 10px;
+  background-color: red;
 }
-.chat-avatar{
-    width: 3%;
-    border-radius: 50%;
-
+.chatbox .message {
+  background: var(--mailcolor);
+  padding: 10px;
+  border-radius: 25px;
+  margin-bottom: 15px;
+  text-align: center;
 }
-.friendslist{
-    background: #1e1d32;
-    height: auto;
-    overflow-y: scroll;
-    border-top: 1px solid black;
+.chatbox .inputs {
+  background: #1e1d32;
+  position: fixed;
+  bottom: 0;
+  padding: 15px;
+  width: 100%;
 }
-.chatbox .header{
-    background-color: #1e1d32;
-    padding: 10px;
+.chatbox .inputs input {
+  background: #00000000;
+  border-radius: 30px;
 }
-.online{
-    position: absolute;
-    margin-left: 10px;
-    border: 0.6px solid lime !important;
-    border-radius: 50%;
-    height: 7px !important;
-    width: 7px !important;
-    margin-top: 10px;
-    background-color: lime;
+.chatbox .inputs input::placeholder {
+  color: var(--mailcolor);
 }
-.offline{
-    position: absolute;
-    margin-left: 10px;
-    border: 0.6px solid red !important;
-    border-radius: 50%;
-    height: 7px !important;
-    width: 7px !important;
-    margin-top: 10px;
-    background-color: red;
+.chat {
+  overflow-y: scroll;
 }
-.chatbox .message{
-    background: var(--mailcolor);
-    padding: 10px;
-    border-radius: 25px;
-    margin-bottom: 15px;
-    text-align: center;
+.chat .date {
+  margin-top: 10px;
 }
-.chatbox .inputs{
-    background: #1e1d32;
-    position: fixed;
-    bottom: 0;
-    padding: 15px;
-    width: 100%;
+.online_avatar {
+  border: 2px solid lime;
 }
-.chatbox .inputs input{
-    background: #00000000;
-    border-radius: 30px;
+.offline_avatar {
+  border: 2px solid red;
 }
-.chatbox .inputs input::placeholder{
-    color: var(--mailcolor)
+.friend:hover {
+  background: #120f1f;
 }
-.chat{
-    overflow-y:  scroll;
+.friend {
+  padding: 7px;
 }
-.chat .date{
-    margin-top: 10px;
-}
-.online_avatar{
-    border: 2px solid lime;
-}
-.offline_avatar{
-    border: 2px solid red;
-}
-.friend:hover{
-    background: #120f1f;
-}
-.friend{
-    padding: 7px;
-  
-}
-.friend img{
+.friend img {
   margin-top: 2px;
 }
-.friend span{
-    margin-top: 2px;
+.friend span {
+  margin-top: 2px;
+}
+
+.popup {
+  background: #120f1f;
+  padding: 10px;
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40vh !important;
 }
