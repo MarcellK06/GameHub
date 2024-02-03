@@ -57,7 +57,7 @@ nav{
 .alert-dd{
     border-radius: 0 !important;
     background: #26253f !important;
-    width: 40vh !important;
+    width: 100% !important;
 }
 .alert-item:hover{
     background: #403e6a !important;
@@ -124,4 +124,29 @@ nav{
 }
 .chatbox .inputs input::placeholder{
     color: var(--mailcolor)
+}
+.chat{
+    overflow-y:  scroll;
+}
+.chat .date{
+    margin-top: 10px;
+}
+.online_avatar{
+    border: 2px solid lime;
+}
+.offline_avatar{
+    border: 2px solid red;
+}
+.friend:hover{
+    background: #120f1f;
+}
+.friend{
+    padding: 7px;
+  
+}
+.friend img{
+  margin-top: 2px;
+}
+.friend span{
+    margin-top: 2px;
 }

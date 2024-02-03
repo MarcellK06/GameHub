@@ -1,9 +1,36 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap";
 import { PiListBold } from "react-icons/pi";
+import { FaPen } from "react-icons/fa6";
 import "./../style.css";
 function ChatBox({ senderId, receiverId }) {
+  const messageRef = useRef();
+  const [sentMessages, setSentMessages] = useState([]);
+
+  const SENDMESSAGE = (message) => {
+    //TODO
+  };
+  const send = () => {
+    const newMessage = messageRef.current.value;
+    if (newMessage.trim() !== "") {
+      setSentMessages((prevMessages) => [...prevMessages, newMessage]);
+      SENDMESSAGE(newMessage);
+      messageRef.current.value = "";
+    }
+  };
+  useEffect(() => {
+    window.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        const newMessage = messageRef.current.value;
+        if (newMessage.trim() !== "") {
+          setSentMessages((prevMessages) => [...prevMessages, newMessage]);
+          SENDMESSAGE(newMessage);
+          messageRef.current.value = "";
+        }
+      }
+    });
+  });
   return (
     <>
       <div className="chatbox">
@@ -25,21 +52,33 @@ function ChatBox({ senderId, receiverId }) {
         </div>
         <div className="chat container mt-1">
           <div className="receiver d-flex justify-content-start">
-            <div className="message">Cső haver, mizu?</div>
+            <div className="message">Cső haver, mizu?</div>      
           </div>
           <div className="sender d-flex justify-content-end">
             <div className="">
-              <div className="message">Szia! 😉</div>
+              {sentMessages.map((i) => (
+                <>
+                  <p className="text-secondary date me-3">Ma {new Date().toISOString().split('T')[1].split('.')[0]}</p>
+                  <div className="message">{i}</div>
+                </>
+              ))}
             </div>
           </div>
         </div>
         <div className="inputs text-center">
           <div className="d-flex">
             <div className="input-group ">
-              <input type="text" className="form-control text-light" placeholder="Aa"/>
+              <input
+                type="text"
+                className="form-control text-light"
+                ref={messageRef}
+                placeholder="Aa"
+              />
             </div>
             <div className="input-group ms-4">
-              <button className="btn btn-primary">Küldés</button>
+              <button className="btn btn-primary" onClick={send}>
+                Küldés
+              </button>
             </div>
           </div>
         </div>
