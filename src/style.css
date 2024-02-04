@@ -29,7 +29,6 @@ body {
 nav {
   background: #1e1d32;
   padding: 20px !important;
-  z-index: -1;
 }
 .nav-link {
   color: white !important;
@@ -153,10 +152,8 @@ nav {
   padding: 30px;
   position: fixed;
   top: 20%;
-  left: 40%;
-  transform: translate(-50%, -50%);
+  left: 38%;
   width: 55vh !important;
-  
 }
 @media only screen and (max-width: 920px) {
   .popup {
@@ -187,4 +184,8 @@ nav {
 }
 .popup .close {
   margin-top: -12px;
+}
+.login label{
+  text-transform: uppercase;
+  font-size: 13px;
 }
