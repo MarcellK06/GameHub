@@ -29,6 +29,7 @@ body {
 nav {
   background: #1e1d32;
   padding: 20px !important;
+  z-index: -1;
 }
 .nav-link {
   color: white !important;
@@ -151,10 +152,17 @@ nav {
   background: #120f1f;
   padding: 30px;
   position: fixed;
-  top: 40%;
-  left: 50%;
+  top: 20%;
+  left: 40%;
   transform: translate(-50%, -50%);
   width: 55vh !important;
+  
+}
+@media only screen and (max-width: 920px) {
+  .popup {
+    width: 100% !important;
+    left:0;
+  }
 }
 .blur {
     position: fixed;
@@ -162,7 +170,6 @@ nav {
     height: 100%;
     top: 0;
     left: 0;
-   
     backdrop-filter: blur(10px);
   }
   
