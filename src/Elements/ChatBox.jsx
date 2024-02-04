@@ -4,12 +4,15 @@ import "bootstrap/dist/js/bootstrap";
 import { PiListBold } from "react-icons/pi";
 import { FaPen } from "react-icons/fa6";
 import "./../style.css";
+import "./../chatstyle.css";
+
 import APIURL from './../APIURL.json';
 function ChatBox({ senderId, receiverId }) {
   const messageRef = useRef();
   const [receiverData, setReceiverData] = useState([]);
   const [messages, setMessages] = useState([]);
   const [loaded, setLoaded] = useState(false);
+  const [lastLength, setLastLength] = useState(0);
 
   const loadMessages = () => {
   
@@ -87,6 +90,13 @@ function ChatBox({ senderId, receiverId }) {
     </div>
     )
   } 
+  setTimeout(() => {
+    loadMessages();
+    if (lastLength != messages.length){
+    document.getElementById('chat').scrollTop = document.getElementById('chat').scrollHeight;
+    setLastLength(messages.length);
+  }
+})
   return (
     <>
       <div className="chatbox">
@@ -108,7 +118,7 @@ function ChatBox({ senderId, receiverId }) {
             <PiListBold size={30} />
           </div>
         </div>
-        <div className="chat container mt-1">
+        <div className="chat container mt-1" id="chat">
           {messages.map(i => i.senderId == senderId ? <SenderMessage messageData={i}/> : <ReceiverMessage messageData={i}/>)}
         </div>
         <div className="inputs text-center">
