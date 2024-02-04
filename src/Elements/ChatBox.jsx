@@ -7,7 +7,8 @@ import "./../style.css";
 function ChatBox({ senderId, receiverId }) {
   const messageRef = useRef();
   const [sentMessages, setSentMessages] = useState([]);
-
+  const [receiverData, setReceiverData] = useState([]);
+  const [loaded, setLoaded] = useState(false);
   const SENDMESSAGE = (message) => {
     //TODO
   };
@@ -31,6 +32,19 @@ function ChatBox({ senderId, receiverId }) {
       }
     });
   });
+  if (loaded == false) {
+    fetch(`http://192.168.1.148:5000/User/getUserById/${receiverId}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setReceiverData(data);
+      })
+      .catch((err) => {
+        console.error(err);
+      })
+      .finally(() => {
+        setLoaded(true);
+      });
+  }
   return (
     <>
       <div className="chatbox">
@@ -41,10 +55,12 @@ function ChatBox({ senderId, receiverId }) {
             className="chat-avatar"
           />
           <div className="ms-auto">
-            <span className="text-center ms-2 text-center">Paragh Tibor</span>
+            <span className="text-center ms-2">{receiverData.name}</span>
             <br />
-            <span className="ms-2">Jelenleg online</span>
-            <span className="online"></span>
+            <span className="ms-2">
+              Jelenleg {receiverData.online ? "online" : "offline"}
+            </span>
+            <span className={receiverData.online ? "online" : "offline"}></span>
           </div>
           <div className="ms-auto">
             <PiListBold size={30} />
@@ -52,13 +68,15 @@ function ChatBox({ senderId, receiverId }) {
         </div>
         <div className="chat container mt-1">
           <div className="receiver d-flex justify-content-start">
-            <div className="message">Cső haver, mizu?</div>      
+            <div className="message">Cső haver, mizu?</div>
           </div>
           <div className="sender d-flex justify-content-end">
             <div className="">
               {sentMessages.map((i) => (
                 <>
-                  <p className="text-secondary date me-3">Ma {new Date().toISOString().split('T')[1].split('.')[0]}</p>
+                  <p className="text-secondary date me-3">
+                    Ma {new Date().toISOString().split("T")[1].split(".")[0]}
+                  </p>
                   <div className="message">{i}</div>
                 </>
               ))}
