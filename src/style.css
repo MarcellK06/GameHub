@@ -137,7 +137,7 @@ nav {
 }
 .chat {
   overflow-y: scroll;
-  height:60vh;
+  height:63vh;
   scrollbar-width: 3px;
 }
 .chat .date {

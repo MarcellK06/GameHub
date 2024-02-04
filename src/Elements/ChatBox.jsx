@@ -96,7 +96,7 @@ function ChatBox({ senderId, receiverId }) {
     document.getElementById('chat').scrollTop = document.getElementById('chat').scrollHeight;
     setLastLength(messages.length);
   }
-})
+}, 75)
   return (
     <>
       <div className="chatbox">
