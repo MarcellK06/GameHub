@@ -10,6 +10,7 @@ import { FaBell } from "react-icons/fa";
 import Popup from "./Popup";
 import Cookies from "js-cookie";
 import Login from "./Login";
+import { MdShoppingCart } from "react-icons/md";
 
 function Home() {
   class NavLink {
@@ -30,43 +31,44 @@ function Home() {
     new NavLink(4, "barátok", "/friends", "GameHub Barátok"),
     new NavLink(5, "Játékok", "/games", "GameHub Játékok"),
   ];
-  useEffect(()=> {
-    document.title = navLink.find(i => i.path == location.pathname).pageTitle;
-  }, [navigator])
+  useEffect(() => {
+    try {
+      document.title = navLink.find(
+        (i) => i.path == location.pathname
+      ).pageTitle;
+    } catch (err) {}
+  }, [navigator]);
   //popup
-  const [popupOpen , setPopupOpen] = useState(false);
+  const [popupOpen, setPopupOpen] = useState(false);
   const [popupContent, setPopupContent] = useState();
   const [popupTitle, setPopupTitle] = useState();
 
-
   const o = (b) => {
     setPopupOpen(!popupOpen);
-  }
+  };
   useEffect(() => {
-    document.querySelectorAll("button.popupClose").forEach(button => {
+    document.querySelectorAll("button.popupClose").forEach((button) => {
       button.addEventListener("click", o);
     });
- 
   }, [Popup]);
-
 
   const logout = () => {
     Cookies.remove("uid");
     Cookies.remove("username");
     window.location.reload();
-  }
+  };
   const toggleLoginPopup = () => {
-    if(Cookies.get("uid") != null){
+    if (Cookies.get("uid") != null) {
       return;
     }
 
     setPopupTitle("Bejelentkezés");
     setPopupOpen(!popupOpen);
-    setPopupContent(<Login/>)
-  }
+    setPopupContent(<Login />);
+  };
   return (
     <>
-     <Popup content={popupContent} title={popupTitle} isOpen={popupOpen}/> 
+      <Popup content={popupContent} title={popupTitle} isOpen={popupOpen} />
       <div className="nav">
         <div className="container">
           <div className="login_info d-flex justify-content-between mt-3">
@@ -74,21 +76,30 @@ function Home() {
               <FaEnvelope className="me-2" />
               info@gamehub.hu
             </p>
-           <div className="d-flex">
-           <p className="login" onClick={toggleLoginPopup}>
-              <img src={loginPng} alt="" className="me-2" />
-              {Cookies.get("username") != null ?Cookies.get("username"): "Bejelentkezés" }
-            </p>
-            <button className="custom-btn backround-main ms-4" onClick={logout} style={{marginTop: "-1px", height: "30px", display: Cookies.get("uid") != null ? "block" : "none"}}>Kijelentkezés</button>
-           </div>
+            <div className="d-flex">
+              <p className="login" onClick={toggleLoginPopup}>
+                <img src={loginPng} alt="" className="me-2" />
+                {Cookies.get("username") != null
+                  ? Cookies.get("username")
+                  : "Bejelentkezés"}
+              </p>
+              <button
+                className="custom-btn backround-main ms-4"
+                onClick={logout}
+                style={{
+                  marginTop: "-1px",
+                  height: "30px",
+                  display: Cookies.get("uid") != null ? "block" : "none",
+                }}>
+                Kijelentkezés
+              </button>
+            </div>
           </div>
         </div>
       </div>
       <nav className="navbar navbar-expand-lg ">
         <div className="container">
-          <a className="navbar-brand logo" href="#">
-          
-          </a>
+          <a className="navbar-brand logo" href="#"></a>
           <button
             className="navbar-toggler"
             type="button"
@@ -125,6 +136,7 @@ function Home() {
                   <FaBell size={22} className="" />
                   <span className="bellcount">9+</span>
                 </button>
+
                 <div className="dropdown-menu alert-dd ">
                   <div className="alert-item p-3">
                     <div className="d-flex justify-content-between">
@@ -149,6 +161,12 @@ function Home() {
                     </div>
                     <p className="text-secondary">Ma 13:23-kor</p>
                   </div>
+                </div>
+              </div>
+              <div>
+                <div className="carticon" onClick={() => navigator("/cart")}>
+                  <MdShoppingCart size={25}/>
+                  <span className="cartcount bg-warning">0</span>
                 </div>
               </div>
             </div>
