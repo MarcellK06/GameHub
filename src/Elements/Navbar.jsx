@@ -8,6 +8,8 @@ import { useLocation, Link } from "react-router-dom";
 import { FaEnvelope } from "react-icons/fa";
 import { FaBell } from "react-icons/fa";
 import Popup from "./Popup";
+import Cookies from "js-cookie";
+import Login from "./Login";
 
 function Home() {
   class NavLink {
@@ -48,33 +50,19 @@ function Home() {
   }, [Popup]);
 
 
-
+  const logout = () => {
+    Cookies.remove("uid");
+    Cookies.remove("username");
+    window.location.reload();
+  }
   const toggleLoginPopup = () => {
+    if(Cookies.get("uid") != null){
+      return;
+    }
+
     setPopupTitle("Bejelentkezés");
     setPopupOpen(!popupOpen);
-    setPopupContent(
-    <>
-    <label className="text-light mb-2 ms-1 mt-3">
-      Felhasználónév vagy email
-    </label>
-    <div className="input-group mb-3">
-      <input type="text" className="form-control custom-btn" />
-    </div>
-    <label className="text-light mb-2 ms-1">
-      Jelszó
-    </label>
-    <div className="input-group mb-3">
-      <input type="password" className="form-control custom-btn" />
-    </div>
-    <div className="input-group mb-3">
-      <button className="form-control backround-main custom-btn">Bejelentkezés</button>
-    </div>
-    <div className="d-flex justify-content-between">
-        <p className="text-main">Elfelejtettem a jelszavamat!</p>
-        <p className="text-main">Még nincs fiókom</p>
-    </div>
-    </>
-    )
+    setPopupContent(<Login/>)
   }
   return (
     <>
@@ -86,10 +74,13 @@ function Home() {
               <FaEnvelope className="me-2" />
               info@gamehub.hu
             </p>
-            <p className="login" onClick={toggleLoginPopup}>
+           <div className="d-flex">
+           <p className="login" onClick={toggleLoginPopup}>
               <img src={loginPng} alt="" className="me-2" />
-              Bejelentkezés
+              {Cookies.get("username") != null ?Cookies.get("username"): "Bejelentkezés" }
             </p>
+            <button className="custom-btn backround-main ms-4" onClick={logout} style={{marginTop: "-1px", height: "30px", display: Cookies.get("uid") != null ? "block" : "none"}}>Kijelentkezés</button>
+           </div>
           </div>
         </div>
       </div>

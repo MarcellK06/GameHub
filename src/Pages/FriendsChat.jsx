@@ -6,6 +6,7 @@ import Navbar from "./../Elements/Navbar";
 import ChatBox from "../Elements/ChatBox";
 import LogInToChat from "../Elements/LogInToChat";
 import Cookies from "js-cookie";
+import APIURL from './../APIURL.json';
 
 function FriendsChat() {
   const [friends, setFriends] = useState([]);
@@ -21,12 +22,12 @@ function FriendsChat() {
       </>
     );
   if (drawn == false) {
-    var friendsList = fetch(`http://192.168.1.148:5000/User/getFriends/${uid}`)
+    var friendsList = fetch(`${APIURL.apiUrl}/User/getFriends/${uid}`)
       .then((response) => response.json())
       .then((data) => {
         for (var k = 0; k < data.length; k++) {
           fetch(
-            `http://192.168.1.148:5000/User/GetUserById/${data[k].friendId}`
+            `${APIURL.apiUrl}/User/GetUserById/${data[k].friendId}`
           )
             .then((response) => response.json())
             .then((v_data) => {
