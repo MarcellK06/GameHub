@@ -102,7 +102,7 @@ function ChatBox({ senderId, receiverId }) {
 }, 75)
 setTimeout(() => {
   updateHeartbeat();
-}, 120000)
+}, 100)
   return (
     <>
       <div className="chatbox">
