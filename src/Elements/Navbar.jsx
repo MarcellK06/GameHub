@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap";
 import "./../style.css";
+import Icon from "./gamehub_logo_nbg";
 import loginPng from "./../media/login.png";
 import { useNavigate } from "react-router-dom";
 import { useLocation, Link } from "react-router-dom";
@@ -86,8 +87,8 @@ function Home() {
       </div>
       <nav className="navbar navbar-expand-lg ">
         <div className="container">
-          <a className="navbar-brand" href="#">
-            Navbar
+          <a className="navbar-brand logo" href="#">
+          
           </a>
           <button
             className="navbar-toggler"

@@ -7,16 +7,15 @@ import "./../style.css";
 import APIURL from './../APIURL.json';
 function ChatBox({ senderId, receiverId }) {
   const messageRef = useRef();
-  const [sentMessages, setSentMessages] = useState([]);
   const [receiverData, setReceiverData] = useState([]);
+  const [messages, setMessages] = useState([]);
   const [loaded, setLoaded] = useState(false);
-  const SENDMESSAGE = (message) => {
-    //TODO
+  const SENDMESSAGE = (message) => { //MÉG NEM MŰKÖDIK!
+    fetch(`${APIURL.apiUrl}/Chat/sendMessage/${senderId}/${receiverId}/${message}`).catch(e => console.error(e)).finally(console.log("successfully sent message."));
   };
   const send = () => {
     const newMessage = messageRef.current.value;
     if (newMessage.trim() !== "") {
-      setSentMessages((prevMessages) => [...prevMessages, newMessage]);
       SENDMESSAGE(newMessage);
       messageRef.current.value = "";
     }
@@ -26,7 +25,6 @@ function ChatBox({ senderId, receiverId }) {
       if (event.key === "Enter") {
         const newMessage = messageRef.current.value;
         if (newMessage.trim() !== "") {
-          setSentMessages((prevMessages) => [...prevMessages, newMessage]);
           SENDMESSAGE(newMessage);
           messageRef.current.value = "";
         }
@@ -45,7 +43,34 @@ function ChatBox({ senderId, receiverId }) {
       .finally(() => {
         setLoaded(true);
       });
+
+      fetch(`${APIURL.apiUrl}/Chat/getMessagesWithUser/${senderId}/${receiverId}`).then((response) => response.json()).then((data) => {
+        setMessages(data);
+      });
   }
+  const SenderMessage = (messageData) => {
+    messageData = messageData.messageData;
+    return (
+    <div className="sender d-flex justify-content-end">
+            <div className="">
+                <>
+                  <p className="text-secondary date me-3">
+                    Ma {new Date().toISOString().split("T")[1].split(".")[0]}
+                  </p>
+                  <div className="message">{messageData.messageBody}</div>
+                </>
+            </div>
+          </div>
+    )
+  }
+  const ReceiverMessage = (messageData) => {
+    messageData = messageData.messageData;
+    return (
+    <div className="receiver d-flex justify-content-start">
+    <div className="message">{messageData.messageBody}</div>
+    </div>
+    )
+  } 
   return (
     <>
       <div className="chatbox">
@@ -68,21 +93,7 @@ function ChatBox({ senderId, receiverId }) {
           </div>
         </div>
         <div className="chat container mt-1">
-          <div className="receiver d-flex justify-content-start">
-            <div className="message">Cső haver, mizu?</div>
-          </div>
-          <div className="sender d-flex justify-content-end">
-            <div className="">
-              {sentMessages.map((i) => (
-                <>
-                  <p className="text-secondary date me-3">
-                    Ma {new Date().toISOString().split("T")[1].split(".")[0]}
-                  </p>
-                  <div className="message">{i}</div>
-                </>
-              ))}
-            </div>
-          </div>
+          {messages.map(i => i.senderId == senderId ? <SenderMessage messageData={i}/> : <ReceiverMessage messageData={i}/>)}
         </div>
         <div className="inputs text-center">
           <div className="d-flex">

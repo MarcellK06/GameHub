@@ -10,8 +10,8 @@ import APIURL from './../APIURL.json';
 
 function FriendsChat() {
   const [friends, setFriends] = useState([]);
+  const [loading, setLoading] = useState(true);
   var uid = Cookies.get("uid");
-  var [drawn, setDrawn] = useState(false);
   if (uid == null)
     return (
       <>
@@ -21,32 +21,17 @@ function FriendsChat() {
         </div>
       </>
     );
-  if (drawn == false) {
-    var friendsList = fetch(`${APIURL.apiUrl}/User/getFriends/${uid}`)
+    if (loading == true){
+    var friendsList = fetch(`${APIURL.apiUrl}/User/getFriendsData/${uid}`)
       .then((response) => response.json())
       .then((data) => {
-        for (var k = 0; k < data.length; k++) {
-          fetch(
-            `${APIURL.apiUrl}/User/GetUserById/${data[k].friendId}`
-          )
-            .then((response) => response.json())
-            .then((v_data) => {
-              setFriends([...friends, v_data]);
-            });
-        }
-        setDrawn(true);
-      })
-      .catch((err) => {
-        console.error(`Hiba barátok lekérésekor: ${err}`);
-      })
-      .finally(() => {
-        setDrawn(true);
-      });
-  }
+        setFriends(data);
+      }).catch(err => console.error(err)).finally(() => setLoading(false));
+    }
   const FriendElement = ({ frienddata }) => {
     var cN = `alert-avatar ${frienddata.online ? "online_avatar" : "offline_avatar"}`
     return (
-      <div className="friend">
+      <div className="friend"> 
         <div className="d-flex ms-2 me-2">
           <img
             src="https://tr.rbxcdn.com/38c6edcb50633730ff4cf39ac8859840/420/420/Hat/Png"
@@ -57,26 +42,25 @@ function FriendsChat() {
         </div>
       </div>
     );
-  };
-
-  const FirstFriendChat = ({ frienddata }) => {
+  }; 
+  const FirstFriendChat = ({ frienddata }) => { 
     if (frienddata.length > 0)
-      return <ChatBox senderId={uid} receiverId={frienddata[0].id} />;
+      return <ChatBox senderId={uid} receiverId={frienddata[0].uid} />;
   };
     return (
-      <>
+      <> 
         <Navbar />
         <div className="row g-0">
           <div className="col-md-2 friendslist">
             <h5 className="mb-3 ms-2 mt-2 text-center">Bárát lista</h5>
             <div>
-              {friends.map(i => (
-                <FriendElement frienddata={i}></FriendElement>
-              ))}
-            </div>
+              {friends.map(i => <FriendElement frienddata={i}/>)
+              }
+            </div> 
           </div>
           <div className="col-md">
-            {<FirstFriendChat frienddata={friends} />}
+            {<FirstFriendChat frienddata={friends}/>
+            }
             <div
               className="d-flex justify-content-center"
               style={{ placeItems: "center", height: "70vh" }}
@@ -85,5 +69,5 @@ function FriendsChat() {
         </div>
       </>
     );
-}
+  }
 export default FriendsChat;
