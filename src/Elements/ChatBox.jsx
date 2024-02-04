@@ -59,12 +59,13 @@ function ChatBox({ senderId, receiverId }) {
   }
   const SenderMessage = (messageData) => {
     messageData = messageData.messageData;
+    var dt = new Date(messageData.messageSent);
     return (
     <div className="sender d-flex justify-content-end">
             <div className="">
                 <>
                   <p className="text-secondary date me-3">
-                    Ma {new Date().toISOString().split("T")[1].split(".")[0]}
+                    Ma {`${dt.toDateString()} ${dt.toTimeString().split(' G')[0]}`}
                   </p>
                   <div className="message">{messageData.messageBody}</div>
                 </>
@@ -74,9 +75,15 @@ function ChatBox({ senderId, receiverId }) {
   }
   const ReceiverMessage = (messageData) => {
     messageData = messageData.messageData;
+    var dt = new Date(messageData.messageSent);
     return (
     <div className="receiver d-flex justify-content-start">
+      <div>
+      <p className="text-secondary date me-3">
+                    Ma {`${dt.toDateString()} ${dt.toTimeString().split(' G')[0]}`}
+                  </p>
     <div className="message">{messageData.messageBody}</div>
+    </div>
     </div>
     )
   } 
