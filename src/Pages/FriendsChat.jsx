@@ -34,7 +34,7 @@ function FriendsChat() {
   function setActiveChat(i) {
     setReceiverId(i);
   }
-  const FriendElement = ({ frienddata }) => {
+  const FriendElement = ({ frienddata }) => { 
     var cN = `alert-avatar ${frienddata.online ? "online_avatar" : "offline_avatar"}`
     return (
       <div className="friend" onClick={event => setActiveChat(frienddata.uid)}> 

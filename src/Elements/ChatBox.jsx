@@ -16,9 +16,12 @@ function ChatBox({ senderId, receiverId }) {
 
   const loadMessages = () => {
   
-  fetch(`${APIURL.apiUrl}/Chat/getMessagesWithUser/${senderId}/${receiverId}`).then((response) => response.json()).then((data) => {
-    setMessages(data);
-  });
+    fetch(`${APIURL.apiUrl}/Chat/getMessagesWithUser/${senderId}/${receiverId}`).then((response) => response.json()).then((data) => {
+      setMessages(data);
+    });
+  }
+  const updateHeartbeat = () => {
+  fetch(`${APIURL.apiUrl}/User/updateHeartBeat/${senderId}`);
 }
 
   const SENDMESSAGE = (message) => { //MÉG NEM MŰKÖDIK!
@@ -97,6 +100,9 @@ function ChatBox({ senderId, receiverId }) {
     setLastLength(messages.length);
   }
 }, 75)
+setTimeout(() => {
+  updateHeartbeat();
+}, 120000)
   return (
     <>
       <div className="chatbox">
