@@ -149,10 +149,35 @@ nav {
 
 .popup {
   background: #120f1f;
-  padding: 10px;
+  padding: 30px;
   position: fixed;
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 40vh !important;
+  width: 55vh !important;
+}
+.blur {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+   
+    backdrop-filter: blur(10px);
+  }
+  
+.text-main {
+  color: var(--mailcolor) !important;
+  text-decoration: none;
+}
+.backround-main {
+  background-color: var(--mailcolor) !important;
+}
+.custom-btn {
+  border-radius: 0 !important;
+  border: none !important;
+  color: white !important;
+}
+.popup .close {
+  margin-top: -12px;
 }

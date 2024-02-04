@@ -4,6 +4,7 @@ import "bootstrap/dist/js/bootstrap";
 import { PiListBold } from "react-icons/pi";
 import { FaPen } from "react-icons/fa6";
 import "./../style.css";
+import APIURL from './../APIURL.json';
 function ChatBox({ senderId, receiverId }) {
   const messageRef = useRef();
   const [sentMessages, setSentMessages] = useState([]);
@@ -33,7 +34,7 @@ function ChatBox({ senderId, receiverId }) {
     });
   });
   if (loaded == false) {
-    fetch(`http://192.168.1.148:5000/User/getUserById/${receiverId}`)
+    fetch(`${APIURL.apiUrl}/User/getUserById/${receiverId}`)
       .then((response) => response.json())
       .then((data) => {
         setReceiverData(data);

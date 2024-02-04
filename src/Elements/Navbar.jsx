@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap";
 import "./../style.css";
@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useLocation, Link } from "react-router-dom";
 import { FaEnvelope } from "react-icons/fa";
 import { FaBell } from "react-icons/fa";
+import Popup from "./Popup";
 
 function Home() {
   class NavLink {
@@ -19,15 +20,65 @@ function Home() {
   }
   const location = useLocation();
   const navigator = useNavigate();
+
   const navLink = [
     new NavLink(1, "Home", "/", "GameHub Főoldal"),
-    new NavLink(6, "rólunk", "/about", "GameHub  Rólunk"),
-    new NavLink(6, "Könyvtár", "/library", "GameHub Könyvtár"),
-    new NavLink(6, "barátok", "/friends", "GameHub Barárok"),
-    new NavLink(6, "Játékok", "/games", "GameHub Játékok"),
+    new NavLink(2, "rólunk", "/about", "GameHub  Rólunk"),
+    new NavLink(3, "Könyvtár", "/library", "GameHub Könyvtár"),
+    new NavLink(4, "barátok", "/friends", "GameHub Barátok"),
+    new NavLink(5, "Játékok", "/games", "GameHub Játékok"),
   ];
+  useEffect(()=> {
+    document.title = navLink.find(i => i.path == location.pathname).pageTitle;
+  }, [navigator])
+  //popup
+  const [popupOpen , setPopupOpen] = useState(false);
+  const [popupContent, setPopupContent] = useState();
+  const [popupTitle, setPopupTitle] = useState();
+
+
+  const o = (b) => {
+    setPopupOpen(!popupOpen);
+  }
+  useEffect(() => {
+    document.querySelectorAll("button.popupClose").forEach(button => {
+      button.addEventListener("click", o);
+    });
+ 
+  }, [Popup]);
+
+
+
+  const toggleLoginPopup = () => {
+    setPopupTitle("Bejelentkezés");
+    setPopupOpen(!popupOpen);
+    setPopupContent(
+    <>
+    <label className="text-light mb-2 ms-1 mt-3">
+      Felhasználónév vagy email
+    </label>
+    <div className="input-group mb-3">
+      <input type="text" className="form-control custom-btn" />
+    </div>
+    <label className="text-light mb-2 ms-1">
+      Jelszó
+    </label>
+    <div className="input-group mb-3">
+      <input type="password" className="form-control custom-btn" />
+    </div>
+    <div className="input-group mb-3">
+      <button className="form-control backround-main custom-btn">Bejelentkezés</button>
+    </div>
+    <div className="d-flex justify-content-between">
+        <p className="text-main">Elfelejtettem a jelszavamat!</p>
+        <p className="text-main">Még nincs fiókom</p>
+    </div>
+    </>
+    )
+  }
   return (
     <>
+     <Popup content={popupContent} title={popupTitle} isOpen={popupOpen}/> 
       <div className="nav">
         <div className="container">
           <div className="login_info d-flex justify-content-between mt-3">
@@ -35,7 +86,7 @@ function Home() {
               <FaEnvelope className="me-2" />
               info@gamehub.hu
             </p>
-            <p className="login">
+            <p className="login" onClick={toggleLoginPopup}>
               <img src={loginPng} alt="" className="me-2" />
               Bejelentkezés
             </p>

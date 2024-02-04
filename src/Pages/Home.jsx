@@ -6,6 +6,7 @@ import Navbar from "./../Elements/Navbar";
 import kep from "./../media/s1.png";
 import Popup from "../Elements/Popup";
 import { FaSleigh } from "react-icons/fa6";
+
 function Home() {
   /*
   //popuphoz szukséges
@@ -27,7 +28,6 @@ function Home() {
   return (
     <>
       <Navbar />
-   
      
      
     </>
