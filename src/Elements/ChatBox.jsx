@@ -10,8 +10,19 @@ function ChatBox({ senderId, receiverId }) {
   const [receiverData, setReceiverData] = useState([]);
   const [messages, setMessages] = useState([]);
   const [loaded, setLoaded] = useState(false);
+
+  const loadMessages = () => {
+  
+  fetch(`${APIURL.apiUrl}/Chat/getMessagesWithUser/${senderId}/${receiverId}`).then((response) => response.json()).then((data) => {
+    setMessages(data);
+  });
+}
+
   const SENDMESSAGE = (message) => { //MÉG NEM MŰKÖDIK!
-    fetch(`${APIURL.apiUrl}/Chat/sendMessage/${senderId}/${receiverId}/${message}`).catch(e => console.error(e)).finally(console.log("successfully sent message."));
+    fetch(`${APIURL.apiUrl}/Chat/sendMessage/${senderId}/${receiverId}/${message}`).catch(e => console.error(e)).finally(() => {
+      console.log("successfully sent message.");
+      loadMessages();
+  });
   };
   const send = () => {
     const newMessage = messageRef.current.value;
@@ -44,9 +55,7 @@ function ChatBox({ senderId, receiverId }) {
         setLoaded(true);
       });
 
-      fetch(`${APIURL.apiUrl}/Chat/getMessagesWithUser/${senderId}/${receiverId}`).then((response) => response.json()).then((data) => {
-        setMessages(data);
-      });
+      loadMessages();
   }
   const SenderMessage = (messageData) => {
     messageData = messageData.messageData;

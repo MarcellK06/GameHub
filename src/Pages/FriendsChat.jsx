@@ -11,6 +11,7 @@ import APIURL from './../APIURL.json';
 function FriendsChat() {
   const [friends, setFriends] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [receiverId, setReceiverId] = useState(0);
   var uid = Cookies.get("uid");
   if (uid == null)
     return (
@@ -26,12 +27,17 @@ function FriendsChat() {
       .then((response) => response.json())
       .then((data) => {
         setFriends(data);
-      }).catch(err => console.error(err)).finally(() => setLoading(false));
+      }).catch(err => console.error(err)).finally(() => {
+        setLoading(false);
+      });
     }
+  function setActiveChat(i) {
+    setReceiverId(i);
+  }
   const FriendElement = ({ frienddata }) => {
     var cN = `alert-avatar ${frienddata.online ? "online_avatar" : "offline_avatar"}`
     return (
-      <div className="friend"> 
+      <div className="friend" onClick={event => setActiveChat(frienddata.uid)}> 
         <div className="d-flex ms-2 me-2">
           <img
             src="https://tr.rbxcdn.com/38c6edcb50633730ff4cf39ac8859840/420/420/Hat/Png"
@@ -43,9 +49,13 @@ function FriendsChat() {
       </div>
     );
   }; 
-  const FirstFriendChat = ({ frienddata }) => { 
-    if (frienddata.length > 0)
-      return <ChatBox senderId={uid} receiverId={frienddata[0].uid} />;
+  const FriendChat = ({ receiverId }) => { 
+    if (friends.length > 0){
+      
+      if (receiverId == 0)
+        setReceiverId(friends[0].uid);
+      return <ChatBox senderId={uid} receiverId={receiverId} />;
+    }
   };
     return (
       <> 
@@ -59,7 +69,7 @@ function FriendsChat() {
             </div> 
           </div>
           <div className="col-md">
-            {<FirstFriendChat frienddata={friends}/>
+            {<FriendChat receiverId={receiverId}/>
             }
             <div
               className="d-flex justify-content-center"

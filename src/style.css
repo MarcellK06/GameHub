@@ -142,6 +142,7 @@ nav {
 }
 .friend:hover {
   background: #120f1f;
+  cursor:pointer;
 }
 .friend {
   padding: 7px;
