@@ -11,6 +11,7 @@ import Popup from "./Popup";
 import Cookies from "js-cookie";
 import Login from "./Login";
 import { MdShoppingCart } from "react-icons/md";
+import APIURL from '../APIURL.json';
 
 function Home() {
   class NavLink {
@@ -42,6 +43,19 @@ function Home() {
   const [popupOpen, setPopupOpen] = useState(false);
   const [popupContent, setPopupContent] = useState();
   const [popupTitle, setPopupTitle] = useState();
+  const [cartinfo, setcartinfo] = useState([]);
+  useEffect(() => {
+    if(Cookies.get("uid") == null ) return;
+    try {
+      fetch(`${APIURL.apiUrl}/Cart/getUserCartTotal/${Cookies.get("uid")}`)
+        .then((response) => response.json())
+        .then((data) => {
+          setcartinfo(data);
+          console.log(data);
+        })
+        .catch((err) => console.error(err));
+    } catch (err) {}
+  }, []);
 
   const o = (b) => {
     setPopupOpen(!popupOpen);
@@ -166,7 +180,7 @@ function Home() {
               <div>
                 <div className="carticon" onClick={() => navigator("/cart")}>
                   <MdShoppingCart size={25}/>
-                  <span className="cartcount bg-warning">0</span>
+                  <span className="cartcount bg-warning">{Cookies.get("uid") == null ? '0' : cartinfo[0]}</span>
                 </div>
               </div>
             </div>
