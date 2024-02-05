@@ -187,6 +187,7 @@ nav {
   top: 20%;
   left: 38%;
   width: 55vh !important;
+  z-index: 99;
 }
 @media only screen and (max-width: 920px) {
   .popup {

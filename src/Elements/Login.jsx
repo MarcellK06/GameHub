@@ -6,6 +6,7 @@ import Cookies from "js-cookie";
 import $ from "jquery";
 
 import APIURL from "./../APIURL.json";
+import { useNavigate } from "react-router-dom";
 function Login() {
   class ResponseMessage {
     constructor(message, type) {
@@ -26,8 +27,17 @@ function Login() {
     }
   }
   const [responseMessage, setResponseMessage] = useState();
+  const [content, setContent] = useState();
   const username = useRef();
   const password = useRef();
+
+
+  const email = useRef();
+  const name = useRef();
+  
+
+
+  const navigator = useNavigate();
   const login = () => {
     setResponseMessage(null);
     const _username = username.current.value;
@@ -64,9 +74,122 @@ function Login() {
       console.error(ex);
     }
   };
-  return (
+  useEffect(() => {
+        setContent(loginH);
+  }, [navigator])
+
+  const registerH = () => {
+    return(
     <>
       <div className="login">
+      <label className="text-light mb-2  mt-3">
+          Email
+        </label>
+        <div className="input-group mb-3">
+          <input
+            type="text"
+            className="form-control custom-btn text-black"
+            ref={email}
+            
+          />
+        </div>
+        <label className="text-light mb-2  mt-3">
+          Név
+        </label>
+        <div className="input-group mb-3">
+          <input
+            type="text"
+            className="form-control custom-btn text-black"
+            ref={name}
+            
+          />
+        </div>
+        <label className="text-light mb-2  mt-3">
+          Felhasználónév
+        </label>
+        <div className="input-group mb-3">
+          <input
+            type="text"
+            className="form-control custom-btn text-black"
+            ref={username}
+          />
+        </div>
+        <label className="text-light mb-2">Jelszó</label>
+        <div className="input-group mb-3">
+          <input
+            type="password"
+            className="form-control custom-btn text-black"
+            ref={password}
+          />
+        </div>
+        <p className="text-center">
+          {" "}
+          {responseMessage == null ? "" : responseMessage.message}
+        </p>
+        <div className="input-group mb-3">
+          <button
+            className="form-control backround-main custom-btn"
+            onClick={REGISTER}>
+            Regisztráció
+          </button>
+        </div>
+        <div className="d-flex justify-content-center">
+          <p className="text-main">Már van fiókom</p>
+        </div>
+      </div>
+    </>
+    )
+  }
+  const REGISTER = () => {
+    const _username = username.current.value;
+    const _password = password.current.value;
+    const _name = name.current.value;
+    const _email = email.current.value;
+    if(_username.length == 0 || _password.length == 0 || _name.length == 0 | _email.length == 0){
+      return setResponseMessage(
+        new ResponseMessage("Hiányzó adatok !", "DANGER")
+      );
+    }
+    const data = {
+      "name": _name,
+      "username": _username,
+      "email": _email,
+      "password": _password,
+      "avatar": " "
+    }
+    try {
+      $.ajax({
+        type: "POST",
+        url: `${APIURL.apiUrl}/User/register`,
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(data),
+        success: function (response) {
+          Cookies.set("uid", response.id);
+          Cookies.set("username", response.username);
+          window.location.reload();
+        },
+        error: function (response) {
+          setResponseMessage(
+            new ResponseMessage("Sikertelen bejelentkezés !", "DANGER")
+          );
+        },
+      });
+    } catch (ex) {
+      console.error(ex);
+    }
+
+
+
+  }
+  const openReg = () => {
+      setContent(registerH);
+      document.getElementById("popuptitle").innerHTML = "Regisztráció";
+      document.getElementById("popup").style.top = "10%";
+  }
+  const loginH = () => {
+    return (<>
+    <div className="login">
         <label className="text-light mb-2  mt-3">
           Felhasználónév vagy email
         </label>
@@ -98,9 +221,14 @@ function Login() {
         </div>
         <div className="d-flex justify-content-between">
           <p className="text-main">Elfelejtettem a jelszavamat!</p>
-          <p className="text-main">Még nincs fiókom</p>
+          <p className="text-main" onClick={openReg}>Még nincs fiókom</p>
         </div>
       </div>
+      </>)
+  }
+  return (
+    <>
+      {content}
     </>
   );
 }

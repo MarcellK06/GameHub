@@ -35,9 +35,9 @@ function Popup({ content, title, isOpen }) {
         initial={{ opacity: 0, scale: 0.5 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.2 }}
-        className="popup">
+        className="popup" id="popup">
         <div className="d-flex justify-content-between">
-          <p className="fs-4">{title}</p>
+          <p className="fs-4" id="popuptitle">{title}</p>
           <button className="popupClose btn" onClick={onClose}>
             <IoMdClose size={30} className="close" />
           </button>
