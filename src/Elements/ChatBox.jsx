@@ -24,7 +24,7 @@ function ChatBox({ senderId, receiverId }) {
   fetch(`${APIURL.apiUrl}/User/updateHeartBeat/${senderId}`);
 }
 
-  const SENDMESSAGE = (message) => { //MÉG NEM MŰKÖDIK!
+  const SENDMESSAGE = (message) => {
     fetch(`${APIURL.apiUrl}/Chat/sendMessage/${senderId}/${receiverId}/${message}`).catch(e => console.error(e)).finally(() => {
       console.log("successfully sent message.");
       loadMessages();
