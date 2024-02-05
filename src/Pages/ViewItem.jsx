@@ -17,7 +17,7 @@ function ViewItem() {
         .then((response) => response.json())
         .then((data) => {
           setGame(data);
-          document.title = data.name;
+          document.title = data[0].game.name;
         })
         .catch((err) => console.error(err));
     } catch (err) {}
