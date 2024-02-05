@@ -66,7 +66,7 @@ nav {
   border: 3px solid #1e1d32;
   text-align: center;
 }
-.carticon{
+.carticon {
   margin-top: 8px;
 }
 .alert-dd {
@@ -82,14 +82,14 @@ nav {
 .alert-avatar {
   width: 15%;
   flex-shrink: 0;
-  height:15%;
+  height: 15%;
   border-radius: 50%;
   margin-top: -4px;
 }
 .chat-avatar {
-  margin-top:.75%;
+  margin-top: 0.75%;
   width: 3%;
-  height:3%;
+  height: 3%;
   flex-shrink: 0;
   border-radius: 50%;
 }
@@ -103,7 +103,7 @@ nav {
   background: #1e1d32;
   height: auto;
   overflow-y: scroll;
-  overflow-x:hidden;
+  overflow-x: hidden;
   border-top: 1px solid black;
 }
 .chatbox .header {
@@ -143,7 +143,7 @@ nav {
   bottom: 0;
   padding: 15px;
   width: 100%;
-  padding-left:17.5%;
+  padding-left: 17.5%;
 }
 .chatbox .inputs input {
   background: #00000000;
@@ -154,7 +154,7 @@ nav {
 }
 .chat {
   overflow-y: scroll;
-  height:63vh;
+  height: 63vh;
   scrollbar-width: 3px;
 }
 .chat .date {
@@ -168,7 +168,7 @@ nav {
 }
 .friend:hover {
   background: #120f1f;
-  cursor:pointer;
+  cursor: pointer;
 }
 .friend {
   padding: 7px;
@@ -192,18 +192,18 @@ nav {
 @media only screen and (max-width: 920px) {
   .popup {
     width: 100% !important;
-    left:0;
+    left: 0;
   }
 }
 .blur {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    backdrop-filter: blur(10px);
-  }
-  
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  backdrop-filter: blur(10px);
+}
+
 .text-main {
   color: var(--mailcolor) !important;
   text-decoration: none;
@@ -219,20 +219,39 @@ nav {
 .popup .close {
   margin-top: -12px;
 }
-.login label{
+.login label {
   text-transform: uppercase;
   font-size: 13px;
 }
 .cartitem {
   margin-top: 10px;
   background: #1e1d32;
-  display: flex;;
+  display: flex;
   place-items: center;
   height: 15vh;
   justify-content: space-between;
   padding: 10px;
-  
 }
-.cardcolor{
+.cardcolor {
   background-color: #1e1d32;
+}
+
+.toplist {
+  padding: 10px;
+}
+.toplist img {
+  width: 10%;
+}
+.toplist {
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+.viewitem img{
+  width: 30%;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+}
+.viewitem{
+  margin-top: 2vh;
+  background: #1e1d32;
+  padding: 10px;
 }
