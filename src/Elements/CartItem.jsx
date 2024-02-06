@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./../style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap";
 import { FaTrashCan } from "react-icons/fa6";
 import APIURL from "../APIURL.json";
-import Cookies from "js-cookie";
-import $ from "jquery";
 
 function CartItem({data}) {
     const removeItem = (id) => {
@@ -14,11 +12,10 @@ function CartItem({data}) {
             window.location.reload();
         });
     }
-    var banner = `data:image/png;base64, ${data.banner}`;
     return (
         <>
         <div className="cartitem">
-        <img src={banner} className="cartItemBanner" alt="jatek kep" />
+        <img src={data.banner} className="cartItemBanner" alt="jatek kep" />
         <div>
             <p className="cartItemName">{data.name}</p>
         </div>

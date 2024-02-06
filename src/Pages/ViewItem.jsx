@@ -43,7 +43,6 @@ function ViewItem() {
     })
   }
   if (loading == false){
-    var banner = `data:image/png;base64, ${game.game.banner}`;
     return (
       <>
         <Navbar />

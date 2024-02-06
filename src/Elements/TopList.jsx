@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap";
@@ -10,7 +10,7 @@ function TopList() {
   const navigator = useNavigate();
   var [loading, setLoading] = useState(true);
 
-  if (loading == true){
+  if (loading === true){
     fetch(`${APIURL.apiUrl}/Game/GetGame/0`)
       .then((response) => response.json())
       .then((data) => {
@@ -18,7 +18,7 @@ function TopList() {
       })
       .catch((err) => console.error(err)).finally(() => setLoading(false));
   }
-  if (loading == false){
+  if (loading === false){
     
     return (
       <>
