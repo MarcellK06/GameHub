@@ -7,17 +7,20 @@ import APIURL from "./../APIURL.json";
 import Cookies from "js-cookie";
 import CartItem from "../Elements/CartItem";
 import OverviewItem from "../Elements/Overview";
+import LogInToView from '../Elements/LogInToView';
 function Cart() {
   var uid = Cookies.get("uid");
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(true);
+  if(uid == null) return (<>  <Navbar /> <LogInToView/></>);
   if (loading == true){
     fetch(`${APIURL.apiUrl}/Cart/getUserCart/${uid}`).then((res) => res.json()).then((data) => setCartItems(data)).catch((err) => console.error(err)).finally(() => setLoading(false));
   }
+ 
   if (loading == false) {
   return (
-    <>
-      <Navbar />
+    <> 
+    <Navbar /> 
       <div className="container cartcontainer">
         <div className="cart">
           <div className="row g-3">

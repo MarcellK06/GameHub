@@ -54,7 +54,7 @@ function ViewItem() {
             <div className="container">
               <div className="viewitem">
                 <div className="d-flex">
-                  <img className="bannerimage" src={banner} alt="" />
+                  <img className="bannerimage" src={game.game.banner} alt="" />
                   <div>
                     <h3 className="ms-5 mt-2">{game.game.name}</h3>
                     <p className="p-5 mt-2">{game.game.longdescr}</p>
