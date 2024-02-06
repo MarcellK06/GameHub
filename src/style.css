@@ -52,6 +52,14 @@ nav {
   width: 25px;
   border: 3px solid #1e1d32;
 }
+.cart {
+  overflow-y:scroll;
+  overflow-x:hidden;
+  padding-top:10px;
+}
+.cartcontainer {
+  display:flex;
+}
 .cartcount {
   position: absolute;
   background: var(--mailcolor);
@@ -226,11 +234,10 @@ nav {
 .cartitem {
   margin-top: 10px;
   background: #1e1d32;
-  display: flex;
   place-items: center;
-  height: 15vh;
+  width:auto;
   justify-content: space-between;
-  padding: 10px;
+  display:flex;
 }
 .cardcolor {
   background-color: #1e1d32;
@@ -254,4 +261,107 @@ nav {
   margin-top: 2vh;
   background: #1e1d32;
   padding: 10px;
+}
+
+.cartitem img {
+  max-height:90px;
+  min-height:20px;
+}
+.cartItemPrice::after {
+content:"Ft";
+}
+.overview {
+  display:flex;
+  flex-direction: column;
+  overflow-y:scroll;
+  overflow-x:hidden;
+}
+.seperateOverview {
+  border: none;
+  height: 5px;
+  color: white;
+  background-color: white;
+  opacity: 0.25;
+}
+.overview, .cart {
+scrollbar-width: none;
+-ms-overflow-style: none;
+}
+.overviewbody {
+  display:flex;
+}
+.cartItemName, .cartItemPrice {
+  text-align: center;
+}
+@media only screen and (min-width:500px) {
+  .cartItemShortDescr {
+    font-size: 12px;
+    text-align:center;
+    padding-left:1vh;
+    padding-right:3vh;
+  }
+
+  .cartItemName {
+    font-size:  18px;
+    text-align:center;
+    padding:auto;
+    width:200px;
+  }
+  .cartitem {
+  padding: 10px;
+  height: 15vh;
+  }
+  .ovwtext {
+    font-size:22px;
+  }
+  .overview {
+    height:55vh;
+  }
+  .cart {
+  padding-right:15px;
+  padding-left:15px;
+  height:80vh;
+  }
+}
+@media only screen and (max-width:500px) {
+  .cartItemShortDescr {
+    display:none;
+  }
+  .cartitem {
+    flex-direction: column;
+    height: 16vh;
+  }
+  .cart {
+    width:100%;
+  }
+  .cartItemBanner {
+    display:none;
+  }
+  .cart {
+    padding-right:30px;
+  }
+  .overview {
+    font-size:55%;
+  }
+  p.ovwtext {
+    font-size:100%;
+  }
+  .ovwdata {
+    display:flex;
+    flex-direction: column;
+  }
+  .optionalLine {
+    display:none;
+  }
+  .overview {
+    height:50vh;
+  }
+  .cardcolor {
+    margin-top:10px;
+  }
+  .cart {
+    margin-top:10px;
+  height:77.6vh;
+  }
+
 }
