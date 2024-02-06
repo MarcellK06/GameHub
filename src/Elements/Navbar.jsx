@@ -51,7 +51,6 @@ function Home() {
         .then((response) => response.json())
         .then((data) => {
           setcartinfo(data);
-          console.log(data);
         })
         .catch((err) => console.error(err));
     } catch (err) {}

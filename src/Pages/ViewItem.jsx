@@ -10,52 +10,53 @@ import Cookies from "js-cookie";
 function ViewItem() {
   const { linkId } = useParams();
   const [game, setGame] = useState(" ");
-  useEffect(() => {
-  
-    try {
+  var [loading, setLoading] = useState(true);
+  if (loading) {
       fetch(`${APIURL.apiUrl}/Game/GetGameByLinkId/${linkId}`)
         .then((response) => response.json())
         .then((data) => {
-          setGame(data);
+          setGame(data[0]);
           document.title = data[0].game.name;
         })
-        .catch((err) => console.error(err));
-    } catch (err) {}
-  }, []);
+        .catch((err) => console.error(err)).finally(() => setLoading(false));
+  }
   const addGameToCart = (id) => {
-    if(Cookies.get("uid") == null) return window.alert("Ehet bejelentkezés szükséges!")
+    if(Cookies.get("uid") == null) return window.alert("Ehhez bejelentkezés szükséges!")
        //TODO
   }
-  return (
-    <>
-      <Navbar />
-      {game == null ? (
-        <p className="text-center">Hiba az oldal betöltése során ! 😭</p>
-      ) : (
-        <>
-          <div className="container">
-            <div className="viewitem">
-              <div className="d-flex">
-                <img src={game[0].game.banner} alt="" />
-                <div>
-                  <h3 className="ms-5 mt-2">{game[0].game.name}</h3>
-                  <p className="p-5 mt-2">{game[0].game.longdescr}</p>
-                  <p className="bg-success p-2 text-center ms-2">{game[0].price} FT</p>
-                  <div className="d-flex justify-content-center">
-                    <div className="input-group ms-2">
-                      <button className="custom-btn backround-main form-control" onClick={() => addGameToCart(game[0].game.id)}>
-                        <MdShoppingCart size={23} className="me-3" />
-                        Kosárba
-                      </button>
+  if (loading == false){
+    var banner = `data:image/png;base64, ${game.game.banner}`;
+    return (
+      <>
+        <Navbar />
+        {game == null ? (
+          <p className="text-center">Hiba az oldal betöltése során ! 😭</p>
+        ) : (
+          <>
+            <div className="container">
+              <div className="viewitem">
+                <div className="d-flex">
+                  <img className="bannerimage" src={banner} alt="" />
+                  <div>
+                    <h3 className="ms-5 mt-2">{game.game.name}</h3>
+                    <p className="p-5 mt-2">{game.game.longdescr}</p>
+                    <p className="bg-success p-2 text-center ms-2">{game.price} FT</p>
+                    <div className="d-flex justify-content-center">
+                      <div className="input-group ms-2">
+                        <button className="custom-btn backround-main form-control" onClick={() => addGameToCart(game.game.id)}>
+                          <MdShoppingCart size={23} className="me-3" />
+                          Kosárba
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </>
-      )}
-    </>
-  );
+          </>
+        )}
+      </>
+    );
+        }
 }
 export default ViewItem;
