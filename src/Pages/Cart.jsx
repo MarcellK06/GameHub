@@ -12,6 +12,10 @@ function Cart() {
   var uid = Cookies.get("uid");
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    document.title = "GameHub | Kosár";
+  })
   if (uid == null)
     return (
       <>

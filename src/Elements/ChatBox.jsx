@@ -43,7 +43,7 @@ function ChatBox({ senderId, receiverId }) {
         const newMessage = messageRef.current.value;
         if (newMessage.trim() !== "") {
           SENDMESSAGE(newMessage);
-          messageRef.current.value = "";
+       
         }
       }
     });
