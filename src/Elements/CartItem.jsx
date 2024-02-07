@@ -23,7 +23,7 @@ function CartItem({data}) {
             <p className="cartItemShortDescr">{data.shortdesc}</p>
         </div>
         <div>
-            <p className="cartItemPrice">{data.price}</p>
+            <p className="cartItemPrice mt-2">{data.price}</p>
         </div>
         <div>
             <button className="btn" onClick={(event) => removeItem(data.cid)}>

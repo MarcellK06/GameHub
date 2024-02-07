@@ -365,3 +365,18 @@ scrollbar-width: none;
   }
 
 }
+.cartemptylogo{
+  width: 20%;
+}
+.cartemptyc{
+  padding: 10px;
+  padding-top: 12px;
+  border-radius: 50%;
+  text-align: center;
+  position: absolute;
+  width: 10vh;
+  height: 10vh;
+  border: 10px solid #1e1d32;
+  margin-left: -40px;
+  font-size: 30px;
+}
