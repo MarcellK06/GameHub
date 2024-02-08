@@ -380,3 +380,17 @@ scrollbar-width: none;
   margin-left: -40px;
   font-size: 30px;
 }
+.library img{
+  padding: 10px;
+  width: 20%;
+}
+
+.libraryitems{
+  overflow-y: scroll;
+}
+.text-bold{
+  font-weight: bold;
+}
+.cursor-pointer{
+  cursor: pointer;
+}

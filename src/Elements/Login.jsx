@@ -64,14 +64,12 @@ function Login() {
           Cookies.set("username", response.username);
           window.location.reload();
         },
-        error: function (response) {
-          setResponseMessage(
-            new ResponseMessage("Sikertelen bejelentkezés !", "DANGER")
-          );
-        },
       });
     } catch (ex) {
       console.error(ex);
+      setResponseMessage(
+        new ResponseMessage("Sikertelen bejelentkezés !", "DANGER")
+      );
     }
   };
   useEffect(() => {
