@@ -12,6 +12,7 @@ import Cookies from "js-cookie";
 import Login from "./Login";
 import { MdShoppingCart } from "react-icons/md";
 import APIURL from "../APIURL.json";
+import Icon from "../media/gamehub_logo_nbg";
 
 function Home() {
   class NavLink {
@@ -118,7 +119,9 @@ function Home() {
       </div>
       <nav className="navbar navbar-expand-lg ">
         <div className="container">
-          <a className="navbar-brand logo" href="#"></a>
+          <a className="navbar-brand" href="/">
+            <Icon className="logo"/>
+          </a>
           <button
             className="navbar-toggler"
             type="button"
