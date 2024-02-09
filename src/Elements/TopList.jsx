@@ -27,7 +27,7 @@ function TopList() {
             {games.map((i) => (
               <div className="item" onClick={() => navigator(`/game/${i.linkId}`)}>
                 <div>
-                  <img src={i.banner} alt="" />
+                  <img className="shopGameBanner" src={i.banner} alt="" />
                 </div>
                 <p className=""> {i.name}</p>
               </div>

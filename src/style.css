@@ -248,12 +248,21 @@ nav {
 .toplist {
   padding: 10px;
 }
-.toplist img {
-  width: 10%;
-}
 .toplist {
   overflow-x: scroll;
   overflow-y: hidden;
+  display: flex;
+}
+.shopGameBanner {
+  min-height:300px;
+  min-width:200px;
+  max-height:300px;
+  max-width:200px;
+  object-fit: scale-down;
+}
+.toplist .item {
+  margin-left:auto;
+  margin-right:auto;
 }
 .viewitem img{
   width: 30%;
