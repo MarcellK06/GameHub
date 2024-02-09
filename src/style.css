@@ -290,10 +290,25 @@ nav {
   padding-right:125px;
 }
 .item.spacerl {
-  padding-right:290px;
+  padding-right:300px;
 }
 .item.spacerr {
-  padding-right:270px;
+  padding-right:260px;
+}
+.scrollLeft, .scrollRight {
+  height:101%;
+  width:8%;
+  position: absolute;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 42vh;
+  font-size:larger;
+}
+.scrollLeft:hover, .scrollRight:hover {
+  cursor:pointer;
+}
+.scrollRight {
+  left:92%;
 }
 .toplist::before {
   pointer-events: none;

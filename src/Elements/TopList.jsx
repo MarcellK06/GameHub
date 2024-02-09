@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap";
 import "./../style.css";
 import APIURL from "./../APIURL.json";
-
+import { FaArrowRight, FaArrowLeft } from "react-icons/fa6";
 function TopList() {
   const [games, setGames] = useState([]);
   const navigator = useNavigate();
@@ -42,9 +42,8 @@ function TopList() {
       <>
         <div className="container">
             <div className="toplisttitle">Kiemelt</div>
-            <button onClick={previousCurrentSelected}>a</button>
-            <button onClick={nextCurrentSelected}>b</button>
           <div className="toplist cardcolor mt-2">
+            <p className="scrollLeft" onClick={previousCurrentSelected}><FaArrowLeft/></p>
             <div className="scroller">
               <div className="item spacerl"> {/*SPACER*/}
                 <div>
@@ -65,6 +64,8 @@ function TopList() {
               <p className="shopGameName"></p>
             </div>
             </div>
+            
+            <p className="scrollRight" onClick={nextCurrentSelected}><FaArrowRight/></p>
           </div>
         </div>
       </>
