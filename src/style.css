@@ -249,11 +249,18 @@ nav {
   padding: 10px;
 }
 .toplist {
-  overflow-x: scroll;
+  overflow-x: hidden;
   overflow-y: hidden;
   display: flex;
   max-height:425px;
   position: relative;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+.scroller {
+  overflow-x:scroll;
+  scroll-snap-type: proximity;
 }
 .shopGameName {
   text-align: center;
@@ -276,13 +283,24 @@ nav {
 .toplist .item {
   margin-left:auto;
   margin-right:auto;
+  display:inline-block;
+  float:none;
+  zoom: 1;
+  padding-left:125px;
+  padding-right:125px;
+}
+.item.spacerl {
+  padding-right:290px;
+}
+.item.spacerr {
+  padding-right:270px;
 }
 .toplist::before {
   pointer-events: none;
   display:flex;
   background: linear-gradient(to right, #1e1d32 10%, rgba(0, 0, 255, 0) 30%, rgba(0, 0, 255, 0) 70%, #1e1d32 90%);
   position: absolute;
-  width:100%;
+  width:101%;
   height:101%;
   margin-top:-1%;
   margin-left:-1%;
