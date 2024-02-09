@@ -221,7 +221,7 @@ nav {
   background-color: var(--mailcolor) !important;
 }
 .custom-btn {
-  border-radius: 5px !important;
+  border-radius: 0 !important;
   border: none !important;
   color: white !important;
   background-color: var(--mailcolor) !important;
