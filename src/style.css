@@ -221,7 +221,7 @@ nav {
   background-color: var(--mailcolor) !important;
 }
 .custom-btn {
-  border-radius: 0 !important;
+  border-radius: 5px !important;
   border: none !important;
   color: white !important;
   background-color: var(--mailcolor) !important;
@@ -471,11 +471,38 @@ scrollbar-width: none;
 }
 .library img{
   padding: 10px;
-  width: 20%;
+  width:64px;
+  height:64px;
+}
+
+.libraryGameName {
+  font-size:smaller;
+  text-align: center;
+  margin:auto;
+}
+
+.resizeLibraryImage {
+  width:50%;
+  margin-left:26%;
+  margin-top:5%;
+}
+
+.libraryPlayButton {
+  padding:15px;
+  font-size:larger;
+  margin-left:39%;
+  margin-top:5%;
 }
 
 .libraryitems{
   overflow-y: scroll;
+  height:81vh;
+  position: sticky;
+}
+
+.libraryItem:hover {
+  cursor:pointer;
+  background-color: #120f1f;
 }
 .text-bold{
   font-weight: bold;

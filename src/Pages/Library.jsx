@@ -38,9 +38,9 @@ function Library() {
               <>
                 <div className="row">
                   <div className="col-xl">
-                    <img src={i.gameData.banner} className="img-fluid" alt="" />
+                    <img src={i.gameData.banner} className="img-fluid resizeLibraryImage" alt="" />
                   </div>
-                  <div className="col-xl ">
+                  <div className="col-xl">
                     <h4 className="mt-5"> {i.gameData.name}</h4>
                     <p className="text-brake">{i.gameData.longdescr}</p>
 
@@ -68,7 +68,13 @@ function Library() {
                         <span className="text-bold">32 óra (TODO)</span>
                       </p>
                     </div>
+                    
+                    <button
+                className="custom-btn backround-main libraryPlayButton">
+                Indítás
+              </button>
                   </div>
+
                 </div>
               </>
             ) : (
@@ -87,10 +93,10 @@ function Library() {
         <div className="col-md-2 library libraryitems cardcolor">
           {library.map((i) => (
             <>
-              <div className="cursor-pointer" onClick={() => setSelectedgame(i.gameData.id)}>
+              <div className="cursor-pointer libraryItem" onClick={() => setSelectedgame(i.gameData.id)}>
                 <div className="d-flex">
-                  <img src={i.gameData.icon} alt="" />
-                  <h5 className="text-center mt-3"> {i.gameData.name}</h5>
+                  <img src={i.gameData.icon} className="libraryIconImage" alt="" />
+                  <h5 className="libraryGameName"> {i.gameData.name}</h5>
                 </div>
               </div>
             </>
