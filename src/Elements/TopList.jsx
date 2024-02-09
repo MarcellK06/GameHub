@@ -23,13 +23,14 @@ function TopList() {
     return (
       <>
         <div className="container">
+            <div className="toplisttitle">Kiemelt</div>
           <div className="toplist cardcolor mt-2">
             {games.map((i) => (
               <div className="item" onClick={() => navigator(`/game/${i.linkId}`)}>
                 <div>
                   <img className="shopGameBanner" src={i.banner} alt="" />
                 </div>
-                <p className=""> {i.name}</p>
+                <p className="shopGameName"> {i.name}</p>
               </div>
             ))}
           </div>
