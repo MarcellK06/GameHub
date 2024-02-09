@@ -262,6 +262,12 @@ nav {
   overflow-x:scroll;
   scroll-snap-type: proximity;
 }
+.gameHover {
+  position: absolute;
+  margin-top:-38%;
+  margin-left:17.75%;
+  display:none;
+}
 .shopGameName {
   text-align: center;
 }
@@ -284,10 +290,22 @@ nav {
   margin-left:auto;
   margin-right:auto;
   display:inline-block;
+  position: sticky;
   float:none;
   zoom: 1;
   padding-left:125px;
   padding-right:125px;
+}
+.toplist .item:hover {
+  cursor:pointer;
+  opacity:0.75;
+  z-index:1;
+}
+.toplist .item:hover img {
+  filter:blur(3px);
+}
+.toplist .item:hover .gameHover {
+  display:block;
 }
 .item.spacerl {
   padding-right:300px;
@@ -303,6 +321,7 @@ nav {
   vertical-align: middle;
   line-height: 42vh;
   font-size:larger;
+  z-index:3;
 }
 .scrollLeft:hover, .scrollRight:hover {
   cursor:pointer;
@@ -319,6 +338,7 @@ nav {
   height:101%;
   margin-top:-1%;
   margin-left:-1%;
+  z-index:2;
   content: " ";
   overflow: hidden;
 }
