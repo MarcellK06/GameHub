@@ -4,14 +4,15 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap";
 import Navbar from "./../Elements/Navbar";
 function Games() {
-    const searchRef = useRef();
+  const searchRef = useRef();
+  const [searchResults, setSearchResult] = useState(["Kezdj el gépelni a kereséshez !"])
 
-    const Search = () => {
-        const _svalue = searchRef.current.value;
-        if(_svalue.length >= 3){
-                //TODO
-        } 
+  const Search = () => {
+    const _svalue = searchRef.current.value;
+    if (_svalue.length >= 3) {
+      //TODO
     }
+  };
   return (
     <>
       <Navbar />
@@ -36,17 +37,28 @@ function Games() {
               <div className="input-group mt-4">
                 <input
                   type="text"
-                  className="form-control"
+                  className="form-control dropdown-toggle"
                   name=""
                   id=""
-                  placeholder="Keresés" 
+                  placeholder="Keresés"
                   ref={searchRef}
+                  data-bs-toggle="dropdown"
                   onInput={Search}
                 />
+                <ul class="dropdown-menu">
+                        {searchResults.map(i => (
+                            <li>
+                            <a class="dropdown-item" href="#">
+                             {i}
+                            </a>
+                          </li>
+                        ))}
+                </ul>
               </div>
             </div>
           </div>
-          <br /><br />
+          <br />
+          <br />
           <div className="row g-0">
             <div className="col">
               <div className="game">
