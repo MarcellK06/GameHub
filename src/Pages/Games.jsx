@@ -4,13 +4,21 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap";
 import Navbar from "./../Elements/Navbar";
 function Games() {
+    const searchRef = useRef();
+
+    const Search = () => {
+        const _svalue = searchRef.current.value;
+        if(_svalue.length >= 3){
+                //TODO
+        } 
+    }
   return (
     <>
       <Navbar />
       <div className="row">
         <div className="col-md-2">
           <div
-            className="cardcolor categories"
+            className="categories"
             style={{ height: "100vh", overflowY: "scroll" }}>
             <h4 className="text-center">Kategóriák</h4>
             <p className="text-center mb-2">Akció</p>
@@ -21,7 +29,7 @@ function Games() {
             <p className="text-center mb-2">Akció</p>
           </div>
         </div>
-        <div className="col-md">
+        <div className="col-md" style={{ overflowY: "scroll !important" }}>
           <div className="row">
             <div className="col-9"></div>
             <div className="col-2">
@@ -31,8 +39,26 @@ function Games() {
                   className="form-control"
                   name=""
                   id=""
-                  placeholder="Keresés"
+                  placeholder="Keresés" 
+                  ref={searchRef}
+                  onInput={Search}
                 />
+              </div>
+            </div>
+          </div>
+          <br /><br />
+          <div className="row g-0">
+            <div className="col">
+              <div className="game">
+                <div className="d-flex justify-content-center">
+                  <img
+                    src="https://cdkeyprices.uk/images/games/5659464/grand-theft-auto-v-desktop-logo-all.jpg"
+                    alt="<game-name>-banner"
+                  />
+                </div>
+                <p className="gamename text-center mt-3">GTA V</p>
+                <p className="price">15 ft</p>
+                <button className="custom-btn btn w-100">Kosárba</button>
               </div>
             </div>
           </div>

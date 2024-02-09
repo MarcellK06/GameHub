@@ -5,6 +5,7 @@ body {
   font-family: "Nunito", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow: auto !important;
 }
 * {
   color: white;
@@ -223,6 +224,7 @@ nav {
   border-radius: 0 !important;
   border: none !important;
   color: white !important;
+  background-color: var(--mailcolor) !important;
 }
 .popup .close {
   margin-top: -12px;
@@ -406,4 +408,13 @@ scrollbar-width: none;
 }
 .categories p:hover{
   background: #000d4140;
+}
+.game{
+  background: #1e1d32;
+  padding: 15px;  
+  width:30vh;
+  margin-bottom: 4vh;
+}
+.game img{
+  width: 55%;
 }
