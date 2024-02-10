@@ -382,6 +382,11 @@ scrollbar-width: none;
 .cartItemName, .cartItemPrice {
   text-align: center;
 }
+
+.game .price {
+  text-align: center;
+}
+
 @media only screen and (min-width:500px) {
   .cartItemShortDescr {
     font-size: 12px;
@@ -411,6 +416,20 @@ scrollbar-width: none;
   padding-left:15px;
   height:80vh;
   }
+  .gamesDisplay {
+    width:70vw;
+  }
+  .game {
+    display:table-cell;
+  }
+  .gamesDisplay .game {
+    width:25%;
+    margin: 10px 70px 70px 10px;
+  }
+  .categories {
+    height:100vh;
+    overflow-y:scroll;
+  }
 }
 @media only screen and (max-width:500px) {
   .cartItemShortDescr {
@@ -418,7 +437,7 @@ scrollbar-width: none;
   }
   .cartitem {
     flex-direction: column;
-    height: 16vh;
+    height: 18vh;
   }
   .cart {
     width:100%;
@@ -452,7 +471,18 @@ scrollbar-width: none;
     margin-top:10px;
   height:77.6vh;
   }
+  .gamesDisplay {
+    width:80%;
+  }
 
+  .gamesDisplay .game {
+    margin-left:15%;
+  }
+
+  .categories {
+    height:fit-content;
+    overflow-y:scroll;
+  }
 }
 .cartemptylogo{
   width: 20%;

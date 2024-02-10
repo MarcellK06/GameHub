@@ -52,12 +52,12 @@ function TopList() {
                 <p className="shopGameName"></p>
               </div>
           {games.map((i, idx) => (
-              <div className="validitem item" id={`game${idx}`} onClick={() => navigator(`/game/${i.linkId}`)}>
+              <div className="validitem item" id={`game${idx}`} onClick={() => navigator(`/game/${i.game.linkId}`)}>
                 <div>
-                  <img className="shopGameBanner" src={i.banner} alt=""/>
+                  <img className="shopGameBanner" src={i.game.banner} alt=""/>
                 </div>
                   <PiListBold size={40} className="gameHover"/>
-                <p className="shopGameName"> {i.name}</p>
+                <p className="shopGameName"> {i.game.name}</p>
               </div>
             ))}
             <div className="item spacerr"> {/*SPACER*/}
