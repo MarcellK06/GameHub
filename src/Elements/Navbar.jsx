@@ -13,6 +13,7 @@ import Login from "./Login";
 import { MdShoppingCart } from "react-icons/md";
 import APIURL from "../APIURL.json";
 import Icon from "../media/gamehub_logo_nbg";
+import NotificationItem from "./NotificationItem";
 
 function Home() {
   class NavLink {
@@ -45,6 +46,7 @@ function Home() {
   const [popupContent, setPopupContent] = useState();
   const [popupTitle, setPopupTitle] = useState();
   const [cartinfo, setcartinfo] = useState([]);
+  const [notifications, setNotifications] = useState([]);
   useEffect(() => {
     if (Cookies.get("uid") == null) return;
     try {
@@ -52,6 +54,12 @@ function Home() {
         .then((response) => response.json())
         .then((data) => {
           setcartinfo(data);
+        })
+        .catch((err) => console.error(err));
+        fetch(`${APIURL.apiUrl}/Notification/GetNotifications/${Cookies.get("uid")}`)
+        .then((response) => response.json())
+        .then((data) => {
+          setNotifications(data);
         })
         .catch((err) => console.error(err));
     } catch (err) {}
@@ -156,33 +164,13 @@ function Home() {
                   data-bs-toggle="dropdown"
                   aria-expanded="false">
                   <FaBell size={22} className="" />
-                  <span className="bellcount">9+</span>
+                  <span className="bellcount">{notifications.filter(i => i.notification.read == 0).length > 9 ? "9+" : notifications.filter(i => i.notification.read == 0).length}</span>
                 </button>
 
                 <div className="dropdown-menu alert-dd ">
-                  <div className="alert-item p-3">
-                    <div className="d-flex justify-content-between">
-                      Bárát felkérés érkezett tőle: tibor_paragh{" "}
-                      {/*név max 12 karakter pl 123456789111... */}
-                      <img
-                        src="https://tr.rbxcdn.com/38c6edcb50633730ff4cf39ac8859840/420/420/Hat/Png"
-                        alt=""
-                        className="alert-avatar"
-                      />
-                    </div>
-                    <p className="text-secondary">Ma 13:23-kor</p>
-                  </div>
-                  <div className="alert-item p-3">
-                    <div className="d-flex justify-content-between">
-                      tibor_paragh, üzent neked.
-                      <img
-                        src="https://tr.rbxcdn.com/38c6edcb50633730ff4cf39ac8859840/420/420/Hat/Png"
-                        alt=""
-                        className="alert-avatar"
-                      />
-                    </div>
-                    <p className="text-secondary">Ma 13:23-kor</p>
-                  </div>
+                  {notifications.map(i => (
+                    <NotificationItem notification={i}/>
+                  ))}
                 </div>
               </div>
               <div>

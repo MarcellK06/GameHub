@@ -42,8 +42,3 @@ function GamesItem({game}) {
   );
 }
 export default GamesItem;
-
-
-/*
-
-      */

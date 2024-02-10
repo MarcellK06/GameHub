@@ -8,7 +8,6 @@ import Popup from "../Elements/Popup";
 import { FaSleigh } from "react-icons/fa6";
 import APIURL from "./../APIURL.json";
 import Cookies from "js-cookie";
-import { useNavigate } from "react-router-dom";
 import { FaCalendarCheck } from "react-icons/fa";
 import { FaClock } from "react-icons/fa";
 import LogInToView from "./../Elements/LogInToView";
@@ -16,7 +15,6 @@ import LogInToView from "./../Elements/LogInToView";
 function Library() {
   const [library, setLibrary] = useState([]);
   const [selected, setSelectedgame] = useState();
-  const navigator = useNavigate();
   var uid = Cookies.get("uid");
   useEffect(() => {
     if (uid == null) {

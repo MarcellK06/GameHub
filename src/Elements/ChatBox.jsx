@@ -71,7 +71,7 @@ function ChatBox({ senderId, receiverId }) {
             <div className="">
                 <>
                   <p className="text-secondary date me-3">
-                    Ma {`${dt.toDateString()} ${dt.toTimeString().split(' G')[0]}`}
+                    {`${dt.toDateString()} ${dt.toTimeString().split(' G')[0]}`}
                   </p>
                   <div className="message">{messageData.messageBody}</div>
                 </>
@@ -86,7 +86,7 @@ function ChatBox({ senderId, receiverId }) {
     <div className="receiver d-flex justify-content-start">
       <div>
       <p className="text-secondary date me-3">
-                    Ma {`${dt.toDateString()} ${dt.toTimeString().split(' G')[0]}`}
+                    {`${dt.toDateString()} ${dt.toTimeString().split(' G')[0]}`}
                   </p>
     <div className="message">{messageData.messageBody}</div>
     </div>
