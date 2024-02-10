@@ -14,7 +14,7 @@ import { MdShoppingCart } from "react-icons/md";
 import APIURL from "../APIURL.json";
 import Icon from "../media/gamehub_logo_nbg";
 import NotificationItem from "./NotificationItem";
-
+import $ from "jquery";
 function Home() {
   class NavLink {
     constructor(id, name, path, pageTitle) {
@@ -83,11 +83,16 @@ function Home() {
     if (Cookies.get("uid") != null) {
       return;
     }
-
     setPopupTitle("Bejelentkezés");
     setPopupOpen(!popupOpen);
     setPopupContent(<Login />);
   };
+  const markAsRead = () => {
+    fetch(`${APIURL.apiUrl}/Notification/ReadNotifications/${Cookies.get("uid")}`).then(() => {
+      fetch(`${APIURL.apiUrl}/Notification/GetNotifications/${Cookies.get("uid")}`)
+      .then((response) => response.json()).then((data) => setNotifications(data));
+    });
+    }
   return (
     <>
       <Popup content={popupContent} title={popupTitle} isOpen={popupOpen} />
@@ -162,9 +167,11 @@ function Home() {
                   className="btn  dropdown-toggle"
                   type="button"
                   data-bs-toggle="dropdown"
-                  aria-expanded="false">
+                  aria-expanded="false"
+                  onClick={(event) => markAsRead()}
+                  >
                   <FaBell size={22} className="" />
-                  <span className="bellcount">{notifications.filter(i => i.notification.read == 0).length > 9 ? "9+" : notifications.filter(i => i.notification.read == 0).length}</span>
+                  <span className="bellcount" id="bellcount">{notifications.filter(i => i.notification.read == 0).length > 9 ? "9+" : notifications.filter(i => i.notification.read == 0).length}</span>
                 </button>
 
                 <div className="dropdown-menu alert-dd ">

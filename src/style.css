@@ -83,7 +83,17 @@ nav {
   background: #26253f !important;
   width: 100% !important;
 }
-.alert-item:hover {
+.alert-item-0:hover {
+  background: #565389 !important;
+  transition: ease-in-out 0.3s;
+  cursor: pointer;
+}
+.alert-item-1 {
+  background: #22203d !important;
+  transition: ease-in-out 0.3s;
+  cursor: pointer;
+}
+.alert-item-1:hover {
   background: #403e6a !important;
   transition: ease-in-out 0.3s;
   cursor: pointer;
