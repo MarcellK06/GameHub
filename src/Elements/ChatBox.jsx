@@ -43,6 +43,7 @@ function ChatBox({ senderId, receiverId }) {
         const newMessage = messageRef.current.value;
         if (newMessage.trim() !== "") {
           SENDMESSAGE(newMessage);
+          messageRef.current.value = "";
        
         }
       }
@@ -138,7 +139,7 @@ setTimeout(() => {
               />
             </div>
             <div className="input-group ms-4">
-              <button className="btn btn-primary" onClick={send}>
+              <button className="btn btn-primary" onClick={(event) => send()}>
                 Küldés
               </button>
             </div>

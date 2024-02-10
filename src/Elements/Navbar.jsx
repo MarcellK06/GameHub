@@ -47,6 +47,14 @@ function Home() {
   const [popupTitle, setPopupTitle] = useState();
   const [cartinfo, setcartinfo] = useState([]);
   const [notifications, setNotifications] = useState([]);
+  const updateNotifs = () => {
+    fetch(`${APIURL.apiUrl}/Notification/GetNotifications/${Cookies.get("uid")}`)
+    .then((response) => response.json())
+    .then((data) => {
+      setNotifications(data);
+    })
+    .catch((err) => console.error(err));
+  }
   useEffect(() => {
     if (Cookies.get("uid") == null) return;
     try {
@@ -56,12 +64,7 @@ function Home() {
           setcartinfo(data);
         })
         .catch((err) => console.error(err));
-        fetch(`${APIURL.apiUrl}/Notification/GetNotifications/${Cookies.get("uid")}`)
-        .then((response) => response.json())
-        .then((data) => {
-          setNotifications(data);
-        })
-        .catch((err) => console.error(err));
+        updateNotifs();
     } catch (err) {}
   }, []);
 
@@ -93,6 +96,10 @@ function Home() {
       .then((response) => response.json()).then((data) => setNotifications(data));
     });
     }
+    
+setTimeout(() => {
+  updateNotifs();
+}, 500)
   return (
     <>
       <Popup content={popupContent} title={popupTitle} isOpen={popupOpen} />
