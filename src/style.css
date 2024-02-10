@@ -359,6 +359,9 @@ nav {
 .cartItemPrice::after {
 content:"Ft";
 }
+.game .price::after {
+  content: " Ft";
+}
 .overview {
   display:flex;
   flex-direction: column;
