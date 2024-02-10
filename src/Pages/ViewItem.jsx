@@ -19,6 +19,10 @@ function ViewItem() {
         .then((data) => {
           setGame(data[0]);
           document.title = data[0].game.name;
+          const link = document.querySelector('link[rel="icon"]');
+         
+          link.setAttribute('href', `${data[0].game.icon}`);
+          
         })
         .catch((err) => console.error(err)).finally(() => setLoading(false));
   }
