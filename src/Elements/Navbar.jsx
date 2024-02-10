@@ -28,7 +28,7 @@ function Home() {
 
   const navLink = [
     new NavLink(1, "Home", "/", "GameHub Főoldal"),
-    new NavLink(2, "támogatás", "/tamogatas", "GameHub  Támogatás"),
+    new NavLink(2, "Támogatás", "/support", "GameHub  Támogatás"),
     new NavLink(3, "Könyvtár", "/library", "GameHub Könyvtár"),
     new NavLink(4, "barátok", "/friends", "GameHub Barátok"),
     new NavLink(5, "Játékok", "/games", "GameHub Játékok"),

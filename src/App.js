@@ -9,7 +9,7 @@ import Cart from './Pages/Cart';
 import ViewItem from './Pages/ViewItem';
 import Profile from './Pages/Profile';
 import Games from './Pages/Games';
-import Tamogatas from './Pages/Tampgatas';
+import Support from './Pages/Support';
 
 function App() {
   return (
@@ -23,7 +23,7 @@ function App() {
           <Route path="/game/:linkId" element={<ViewItem />} />
           <Route path="/profile" element={<Profile />} /> 
           <Route path="/games" element={<Games />} />   
-          <Route path="/tamogatas" element={<Tamogatas />} />   
+          <Route path="/support" element={<Support />} />   
         </Routes>
       </BrowserRouter>
     </>

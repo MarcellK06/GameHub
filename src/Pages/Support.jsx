@@ -2,10 +2,11 @@ import React, { useRef, useState } from "react";
 import "./../style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap";
-import Navbar from "./../Elements/Navbar";
-import TopList from "../Elements/TopList";
+import Navbar from "../Elements/Navbar";
+import { MdEmail } from "react-icons/md";
+import { BsBuilding, BsGlobe, BsPersonCircle, BsPhone } from "react-icons/bs";
 
-function Tamogatas() {
+function Support() {
   return (
     <>
       <Navbar />
@@ -42,15 +43,15 @@ function Tamogatas() {
           <p>
             Cég neve: GameHub
             <br />
-            Székhely: Budapest, Magyarország
+            <BsBuilding/> Székhely: Mátészalka, Kölcsey u. 12, 4700
             <br />
-            Cégvezető: Minta Péter
+            <BsPersonCircle/> Cégvezető: Kádár Marcell
             <br />
-            Cégtelefon: [+36 XXX XXX XXX]
+            <BsPhone/> Cégtelefon: <a href="tel:+36303926004">+36 30 392 6004</a>
             <br />
-            E-mail: info@gamehub.com
+            <MdEmail/> E-mail: <a href="mailto:info@gamehub.hu">info@gamehub.hu</a>
             <br />
-            Weboldal: <a href="www.gamehub.com">www.gamehub.hu</a>
+            <BsGlobe/> Weboldal: <a href="www.gamehub.com">www.gamehub.hu</a>
           </p>
         </div>
       </div>
@@ -58,4 +59,4 @@ function Tamogatas() {
   );
 }
 
-export default Tamogatas;
+export default Support;
