@@ -6,6 +6,7 @@ import Navbar from "./../Elements/Navbar";
 import APIURL from "./../APIURL.json";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+import $ from 'jquery';
 function Games() {
   const searchRef = useRef(...["asd"]);
   const [searchResults, setSearchResult] = useState(["Kezdj el gépelni a kereséshez !"])
