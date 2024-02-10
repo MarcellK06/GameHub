@@ -11,6 +11,7 @@ import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import { FaCalendarCheck } from "react-icons/fa";
 import { FaClock } from "react-icons/fa";
+import LogInToView from "./../Elements/LogInToView";
 
 function Library() {
   const [library, setLibrary] = useState([]);
@@ -29,6 +30,14 @@ function Library() {
         console.log(data);
       });
   }, []);
+  if(uid == null){
+    return (  
+    <> 
+       <Navbar/>
+      <LogInToView/>
+    </>
+    )   
+  }
   const OpenedGame = ({ gameid }) => {
     return (
       <>
