@@ -7,7 +7,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   overflow: auto !important;
 }
-* {
+*:not(.kereses) {
   color: white;
 }
 :root {
@@ -562,7 +562,7 @@ scrollbar-width: none;
 .game img{
   width: 55%;
 }
-input{
+input:not(.kereses){
   color: white !important;
 }
 .profile .avatar{
@@ -589,5 +589,8 @@ input{
   text-align: center;
   margin-top: 27%;
   font-size: 30px;
+}
 
+input.kereses {
+  color: rgb(7, 9, 21);
 }

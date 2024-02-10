@@ -38,7 +38,6 @@ function TopList() {
     setInFocus(currentSelected);
   }
   if (loading === false){
-    
     return (
       <>
         <div className="container">
