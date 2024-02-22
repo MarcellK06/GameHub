@@ -28,13 +28,13 @@ function Library() {
         console.log(data);
       });
   }, []);
-  if(uid == null){
-    return (  
-    <> 
-       <Navbar/>
-      <LogInToView/>
-    </>
-    )   
+  if (uid == null) {
+    return (
+      <>
+        <Navbar />
+        <LogInToView />
+      </>
+    );
   }
   const OpenedGame = ({ gameid }) => {
     return (
@@ -45,43 +45,49 @@ function Library() {
               <>
                 <div className="row">
                   <div className="col-xl">
-                    <img src={i.gameData.banner} className="img-fluid resizeLibraryImage" alt="" />
+                    <img
+                      src={i.gameData.banner}
+                      className="img-fluid resizeLibraryImage"
+                      alt=""
+                    />
                   </div>
                   <div className="col-xl">
-                    <h4 className="mt-5"> {i.gameData.name}</h4>
-                    <p className="text-brake">{i.gameData.longdescr}</p>
+                    <br /><br /><br /><br />
+                    <br />
+                    <div className="mt-5">
+                      <h4 className="mt-5"> {i.gameData.name}</h4>
+                      <p className="text-brake">{i.gameData.longdescr}</p>
 
-                    <div className="d-flex">
-                      <FaCalendarCheck size={30} />
+                      <div className="d-flex">
+                        <FaCalendarCheck size={30} />
 
-                      <p className="ms-3" style={{ marginTop: "3px" }}>
-                        Megvásárolva:
-                        <span className="text-bold">
-                          {" "}
-                          {
-                            new Date(i.purchased_since)
-                              .toISOString()
-                              .split("T")
-                              .join(" ")
-                              .split(".")[0]
-                          }
-                        </span>
-                      </p>
+                        <p className="ms-3" style={{ marginTop: "3px" }}>
+                          Megvásárolva:
+                          <span className="text-bold">
+                            {" "}
+                            {
+                              new Date(i.purchased_since)
+                                .toISOString()
+                                .split("T")
+                                .join(" ")
+                                .split(".")[0]
+                            }
+                          </span>
+                        </p>
+                      </div>
+                      <div className="d-flex">
+                        <FaClock size={30} />
+                        <p className="ms-3" style={{ marginTop: "3px" }}>
+                          Játékban töltött idő:{" "}
+                          <span className="text-bold">32 óra (TODO)</span>
+                        </p>
+                      </div>
+
+                      <button className="custom-btn backround-main libraryPlayButton">
+                        Indítás
+                      </button>
                     </div>
-                    <div className="d-flex">
-                      <FaClock size={30} />
-                      <p className="ms-3" style={{ marginTop: "3px" }}>
-                        Játékban töltött idő:{" "}
-                        <span className="text-bold">32 óra (TODO)</span>
-                      </p>
-                    </div>
-                    
-                    <button
-                className="custom-btn backround-main libraryPlayButton">
-                Indítás
-              </button>
                   </div>
-
                 </div>
               </>
             ) : (
@@ -100,9 +106,15 @@ function Library() {
         <div className="col-md-2 library libraryitems cardcolor">
           {library.map((i) => (
             <>
-              <div className="cursor-pointer libraryItem" onClick={() => setSelectedgame(i.gameData.id)}>
+              <div
+                className="cursor-pointer libraryItem"
+                onClick={() => setSelectedgame(i.gameData.id)}>
                 <div className="d-flex">
-                  <img src={i.gameData.icon} className="libraryIconImage" alt="" />
+                  <img
+                    src={i.gameData.icon}
+                    className="libraryIconImage"
+                    alt=""
+                  />
                   <h5 className="libraryGameName"> {i.gameData.name}</h5>
                 </div>
               </div>

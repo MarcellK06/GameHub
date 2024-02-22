@@ -98,6 +98,7 @@ function Home() {
     }
     
 setTimeout(() => {
+  if(Cookies.get("uid") == null) return;
   updateNotifs();
 }, 500)
   return (
@@ -178,13 +179,13 @@ setTimeout(() => {
                   onClick={(event) => markAsRead()}
                   >
                   <FaBell size={22} className="" />
-                  <span className="bellcount" id="bellcount">{notifications.filter(i => i.notification.read == 0).length > 9 ? "9+" : notifications.filter(i => i.notification.read == 0).length}</span>
+                  <span className="bellcount" id="bellcount">{Cookies.get("uid") != null ? notifications.filter(i => i.notification.read == 0).length > 9 ? "9+" : notifications.filter(i => i.notification.read == 0).length : 0}</span>
                 </button>
 
                 <div className="dropdown-menu alert-dd ">
-                  {notifications.map(i => (
+                  {Cookies.get("uid") != null ? notifications.map(i => (
                     <NotificationItem notification={i}/>
-                  ))}
+                  )): ""}
                 </div>
               </div>
               <div>

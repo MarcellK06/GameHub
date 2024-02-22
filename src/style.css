@@ -61,6 +61,9 @@ nav {
 .cartcontainer {
   display:flex;
 }
+.backbtn{
+  background-color: var(--mailcolor) !important;
+}
 .cartcount {
   position: absolute;
   background: var(--mailcolor);
@@ -234,7 +237,6 @@ nav {
   border-radius: 0 !important;
   border: none !important;
   color: white !important;
-  background-color: var(--mailcolor) !important;
 }
 .popup .close {
   margin-top: -12px;
@@ -555,6 +557,8 @@ scrollbar-width: none;
 }
 .logo{
   width: 20%;
+  -webkit-filter: invert(100%); /* Safari/Chrome */
+    filter: invert(100%);
 }
 .categories{
   padding: 15px;
@@ -575,9 +579,7 @@ scrollbar-width: none;
 .game img{
   width: 55%;
 }
-input:not(.kereses){
-  color: white !important;
-}
+
 .profile .avatar{
   border-radius: 50%;
   max-width: 20%;
@@ -607,3 +609,17 @@ input:not(.kereses){
 input.kereses {
   color: rgb(7, 9, 21);
 }
+.bannerimage{
+  width: 80% !important;
+}
+.supportcard{
+  border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+ 
+}
+.supportcard:hover{
+  background: #960057;
+  transform: scale(1.03); 
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+}
+

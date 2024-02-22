@@ -8,7 +8,7 @@ import "./../style.css";
 function GamesItem({game}) {
     const addGameToCart = (id) => {
         const uid = Cookies.get("uid");
-        if(uid == null) return window.alert("Ehhez bejelentkezés szükséges!")
+        if(uid == null) return window.alert("Ehez bejelentkezés szükséges!")
         const data = {
           "userId": uid,
           "gameId": id
@@ -28,7 +28,7 @@ function GamesItem({game}) {
         })
       }
   return (
-      <div className="game">
+      <div className="game col-md">
         <div className="d-flex justify-content-center">
           <img
             src={game.game.banner}
@@ -37,7 +37,7 @@ function GamesItem({game}) {
         </div>
         <p className="gamename text-center mt-3">{game.game.name}</p>
         <p className="price">{game.shop.price}</p>
-        <button className="custom-btn btn w-100" onClick={event => addGameToCart(game.game.id)}>Kosárba</button>
+        <button className="custom-btn btn w-100 backbtn" onClick={event => addGameToCart(game.game.id)}>Kosárba</button>
        </div>
   );
 }
