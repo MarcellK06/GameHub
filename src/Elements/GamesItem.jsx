@@ -28,7 +28,7 @@ function GamesItem({game}) {
         })
       }
   return (
-      <div className="game col-md">
+      <div className="game">
         <div className="d-flex justify-content-center">
           <img
             src={game.game.banner}

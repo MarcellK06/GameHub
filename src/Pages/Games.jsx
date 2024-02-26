@@ -83,7 +83,7 @@ if (loading == false){
                   data-bs-toggle="dropdown"
                   onInput={Search}
                 />
-                <ul className="dropdown-menu">
+                <ul className="dropdown-menu smenu">
                         {searchResults.map(i => (
                             <li onClick={() => navigator(`/game/${i.linkId}`)}>
                             <a className="dropdown-item" href="">
