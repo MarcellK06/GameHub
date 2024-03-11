@@ -38,6 +38,16 @@
                 "password": "123457689"
             }
             
+        ],
+        "categories": [
+            {
+                "categoryId": "1",
+                "categoryName": "Action-Adventure"
+            },
+            {
+                "categoryId": "2",
+                "categoryName": "Racing"
+            }
         ]
     }
 ]

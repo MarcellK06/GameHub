@@ -6,6 +6,7 @@ import Navbar from "./../Elements/Navbar";
 import APIURL from "./../APIURL.json";
 import { useNavigate } from "react-router-dom";
 import GamesItem from "../Elements/GamesItem";
+import JSON from "./../backup.json";
 function Games() {
   const searchRef = useRef(...["asd"]);
   const [searchResults, setSearchResult] = useState(["Kezdj el gépelni a kereséshez !"])
@@ -16,17 +17,26 @@ function Games() {
   const [toShowGames, setToShowGames] = useState([]);
   const navigator = useNavigate();
   
+  var backup = true;
 
   const Search = () => {
     const _svalue = searchRef.current.value;
-
+    var games = JSON.games;
     if (_svalue.length >= 3) {
+      if (backup){
+      var found = games.find(i => i.name.includes(_svalue));
+      setSearchResult(found);
+      setSearchInfo(found.length == 0 ? "A játék nem található!": "");
+      }
+      if (!backup) {
+        
       fetch(`${APIURL.apiUrl}/Game/searchGame/${_svalue}`)
       .then((response) => response.json())
       .then((data) => {
         setSearchResult(data); 
         setSearchInfo(data.length == 0 ? "A játék nem található !" : "");
       });
+    }
     } else if(_svalue.length < 3 && _svalue.length != 0) {
       setSearchResult([]);
       setSearchInfo("A kereséshez minimum 3 karakter szükséges !");
@@ -35,17 +45,27 @@ function Games() {
     }
   };
   if (loading == true){
-    fetch(`${APIURL.apiUrl}/Category/GetCategories`)
-    .then((response) => response.json())
-    .then((data) => {
-      setCategories(data);    
-    });
+    if (backup){
+    var data = JSON[0].categories;
+      setCategories(data); 
+    var v_games = JSON[0].categories;
+    setGames(v_games);
+    setToShowGames(v_games);
+    setLoading(false);
+    }
+    if(!backup) {
+      fetch(`${APIURL.apiUrl}/Category/GetCategories`)
+      .then((response) => response.json())
+      .then((data) => {
+        setCategories(data);    
+      });
     fetch(`${APIURL.apiUrl}/Game/GetGame/0`)
       .then((response) => response.json())
       .then((data) => {
         setGames(data);
         setToShowGames(data);
       }).finally(() => setLoading(false));
+    }
 }
 const setActiveCategory = (id) => {
   console.log(id);
