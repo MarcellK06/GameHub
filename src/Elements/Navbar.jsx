@@ -12,7 +12,7 @@ import Cookies from "js-cookie";
 import Login from "./Login";
 import { MdShoppingCart } from "react-icons/md";
 import APIURL from "../APIURL.json";
-import Icon from "../media/gamehub_logo_nbg";
+import Icon from "../GameHub/png/logo-no-background.png";
 import NotificationItem from "./NotificationItem";
 import $ from "jquery";
 function Home() {
