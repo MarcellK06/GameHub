@@ -95,6 +95,7 @@ function Login() {
   }, [navigator])
 
   const registerH = () => {
+    if (!backup) {
   return (
     <>
       <div className="login">
@@ -155,6 +156,10 @@ function Login() {
               </div>
     </>
     )
+  }
+  if (backup) {
+    return window.alert("A weboldal biztonsági mentésről fut, ez a művelet nem engedélyezett!");
+  }
   }
   const REGISTER = () => {
     const _username = username.current.value;

@@ -6,7 +6,9 @@ import $ from 'jquery';
 import APIURL from "./../APIURL.json";
 import "./../style.css";
 function GamesItem({game}) {
+  var backup = true;
     const addGameToCart = (id) => {
+      if (!backup){
         const uid = Cookies.get("uid");
         if(uid == null) return window.alert("Ehez bejelentkezés szükséges!")
         const data = {
@@ -27,6 +29,10 @@ function GamesItem({game}) {
           },
         })
       }
+      else {
+        return window.alert("A weboldal biztonsági mentésről fut, ez a művelet nem engedélyezett!");
+      }
+    }
   return (
       <div className="game">
         <div className="d-flex justify-content-center">
