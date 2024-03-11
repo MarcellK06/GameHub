@@ -31,13 +31,13 @@ function GamesItem({game}) {
       <div className="game">
         <div className="d-flex justify-content-center">
           <img
-            src={game.game.banner}
+            src={game.banner}
             alt="<game-name>-banner"
           />
         </div>
-        <p className="gamename text-center mt-3">{game.game.name}</p>
+        <p className="gamename text-center mt-3">{game.name}</p>
         <p className="price">{game.shop.price}</p>
-        <button className="custom-btn btn w-100 backbtn" onClick={event => addGameToCart(game.game.id)}>Kosárba</button>
+        <button className="custom-btn btn w-100 backbtn" onClick={event => addGameToCart(game.id)}>Kosárba</button>
        </div>
   );
 }
