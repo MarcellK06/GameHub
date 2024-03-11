@@ -4,6 +4,7 @@ import "bootstrap/dist/js/bootstrap";
 import "./../style.css";
 import Cookies from "js-cookie";
 import $ from "jquery";
+import JSON from '../../backup.json';
 
 import APIURL from "./../APIURL.json";
 import { useNavigate } from "react-router-dom";
@@ -38,10 +39,25 @@ function Login() {
 
 
   const navigator = useNavigate();
+
+  var backup = true;
   const login = () => {
     setResponseMessage(null);
     const _username = username.current.value;
     const _password = password.current.value;
+
+    if(backup){
+        var user = JSON[0].users.find(i => i.username == _username);
+        if(user != null) {
+          if(user.password == _password){
+            Cookies.set("uid", JSON[0].users.indexOf(user));
+            Cookies.set("username", _username);
+          }
+        }
+
+        return window.alert('Sikertelen bejelenthezés !');
+    } 
+    return;
     if (_username.length == 0 || _password.length == 0) {
       return setResponseMessage(
         new ResponseMessage("Hiányzó adatok", "DANGER")

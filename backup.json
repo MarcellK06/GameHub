@@ -4,6 +4,16 @@
 
         ],
         "users" : [
+            {
+                "username": "teszt_elek",
+                "email": "tesztelek@gmail.com",
+                "password": "tesztelek"
+            },
+            {
+                "username": "tibor_paragh",
+                "email": "paraghtibor@gmail.com",
+                "password": "123457689"
+            }
             
         ]
     }
