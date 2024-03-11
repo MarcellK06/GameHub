@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "./../media/logo.png";
+import Logo from "./../GameHub/png/logo-no-background.png";
 
 function Icon() {
   return (
