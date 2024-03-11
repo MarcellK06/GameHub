@@ -7,6 +7,7 @@ import APIURL from "../APIURL.json";
 import Navbar from "../Elements/Navbar";
 import { MdShoppingCart } from "react-icons/md";
 import Cookies from "js-cookie";
+import JSON from './../backup.json';
 import $ from "jquery";
 function ViewItem() {
   var uid = Cookies.get("uid");
@@ -14,6 +15,7 @@ function ViewItem() {
   const [game, setGame] = useState(" ");
   var [loading, setLoading] = useState(true);
   if (loading) {
+    /*
     fetch(`${APIURL.apiUrl}/Game/GetGameByLinkId/${linkId}`)
       .then((response) => response.json())
       .then((data) => {
@@ -25,7 +27,15 @@ function ViewItem() {
       })
       .catch((err) => console.error(err))
       .finally(() => setLoading(false));
+      */
+    
   }
+  useEffect(() => {
+    var jatek = JSON[0].games.find(i => i.linkId == linkId);
+    loading = false;
+    setGame(jatek);
+   
+  }, [])
   const addGameToCart = (id) => {
     if (uid == null) return window.alert("Ehhez bejelentkezés szükséges!");
     const data = {
@@ -46,7 +56,7 @@ function ViewItem() {
       },
     });
   };
-  if (loading == false) {
+  
     return (
       <>
         <Navbar />
@@ -60,15 +70,15 @@ function ViewItem() {
                   <div className="col-sm">
                     <img
                       className="bannerimage"
-                      src={game.game.banner}
+                      src={game.banner}
                       alt=""
                     />
                   </div>
                   <div className="col-sm">
                    <div className="d-flex">
                      <div className="me-5">
-                      <h3 className="ms-5 mt-2">{game.game.name}</h3>
-                      <p className="p-5 mt-2">{game.game.longdescr}</p>
+                      <h3 className="ms-5 mt-2">{game.name}</h3>
+                      <p className="p-5 mt-2">{game.longdescr}</p>
                       <p className="bg-success p-2 text-center ms-2 cartItemPrice">
                         {game.price}
                       </p>
@@ -76,7 +86,7 @@ function ViewItem() {
                         <div className="input-group ms-2">
                           <button
                             className="custom-btn backround-main form-control"
-                            onClick={() => addGameToCart(game.game.id)}>
+                            onClick={() => addGameToCart(game.id)}>
                             <MdShoppingCart size={23} className="me-3" />
                             Kosárba
                           </button>
@@ -92,6 +102,6 @@ function ViewItem() {
         )}
       </>
     );
-  }
+  
 }
 export default ViewItem;

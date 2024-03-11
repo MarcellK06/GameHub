@@ -1,206 +1,250 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap";
 import "./../style.css";
-import loginPng from "./../media/login.png";
-import { useNavigate } from "react-router-dom";
-import { useLocation, Link } from "react-router-dom";
-import { FaEnvelope } from "react-icons/fa";
-import { FaBell } from "react-icons/fa";
-import Popup from "./Popup";
 import Cookies from "js-cookie";
-import Login from "./Login";
-import { MdShoppingCart } from "react-icons/md";
-import APIURL from "../APIURL.json";
-import Icon from "../media/gamehub_logo_nbg";
-import NotificationItem from "./NotificationItem";
 import $ from "jquery";
-function Home() {
-  class NavLink {
-    constructor(id, name, path, pageTitle) {
-      this.id = id;
-      this.name = name;
-      this.path = path;
-      this.pageTitle = pageTitle;
+import JSON from '../backup.json';
+
+import APIURL from "./../APIURL.json";
+import { useNavigate } from "react-router-dom";
+function Login() {
+  class ResponseMessage {
+    constructor(message, type) {
+      this.type = type;
+      switch (type) {
+        case "ALERT":
+          this.message = <p className="text-alert">{message}</p>;
+          break;
+        case "DANGER":
+          this.message = <p className="text-danger">{message}</p>;
+          break;
+        case "SUCCESS":
+          this.message = <p className="text-success">{message}</p>;
+          break;
+        default:
+          console.error("");
+      }
     }
   }
-  const location = useLocation();
+  const [responseMessage, setResponseMessage] = useState();
+  const [content, setContent] = useState();
+  const username = useRef();
+  const password = useRef();
+
+
+  const email = useRef();
+  const name = useRef();
+
+
+
   const navigator = useNavigate();
 
-  const navLink = [
-    new NavLink(1, "Home", "/", "GameHub Főoldal"),
-    new NavLink(2, "Támogatás", "/support", "GameHub  Támogatás"),
-    new NavLink(3, "Könyvtár", "/library", "GameHub Könyvtár"),
-    new NavLink(4, "barátok", "/friends", "GameHub Barátok"),
-    new NavLink(5, "Játékok", "/games", "GameHub Játékok"),
-  ];
-  useEffect(() => {
-    try {
-      document.title = navLink.find(
-        (i) => i.path == location.pathname
-      ).pageTitle;
-    } catch (err) {}
-  }, [navigator]);
-  //popup
-  const [popupOpen, setPopupOpen] = useState(false);
-  const [popupContent, setPopupContent] = useState();
-  const [popupTitle, setPopupTitle] = useState();
-  const [cartinfo, setcartinfo] = useState([]);
-  const [notifications, setNotifications] = useState([]);
-  const updateNotifs = () => {
-    fetch(`${APIURL.apiUrl}/Notification/GetNotifications/${Cookies.get("uid")}`)
-    .then((response) => response.json())
-    .then((data) => {
-      setNotifications(data);
-    })
-    .catch((err) => console.error(err));
-  }
-  useEffect(() => {
-    if (Cookies.get("uid") == null) return;
-    try {
-      fetch(`${APIURL.apiUrl}/Cart/getUserCartTotal/${Cookies.get("uid")}`)
-        .then((response) => response.json())
-        .then((data) => {
-          setcartinfo(data);
-        })
-        .catch((err) => console.error(err));
-        updateNotifs();
-    } catch (err) {}
-  }, []);
+  var backup = true;
+  const login = () => {
+    setResponseMessage(null);
+    const _username = username.current.value;
+    const _password = password.current.value;
 
-  const o = (b) => {
-    setPopupOpen(!popupOpen);
-  };
-  useEffect(() => {
-    document.querySelectorAll("button.popupClose").forEach((button) => {
-      button.addEventListener("click", o);
-    });
-  }, [Popup]);
-
-  const logout = () => {
-    Cookies.remove("uid");
-    Cookies.remove("username");
-    window.location.reload();
-  };
-  const toggleLoginPopup = () => {
-    if (Cookies.get("uid") != null) {
+    if(backup){
+        var user = JSON[0].users.find(i => i.username == _username);
+        if(user != null) {
+          if(user.password == _password){
+            Cookies.set("uid", JSON[0].users.indexOf(user));
+            Cookies.set("username", _username);
+          }
+        } else {
+          return window.alert('Sikertelen bejelenthezés !');
+        }
+       
+    } 
       return;
+    if (_username.length == 0 || _password.length == 0) {
+      return setResponseMessage(
+        new ResponseMessage("Hiányzó adatok", "DANGER")
+      );
     }
-    setPopupTitle("Bejelentkezés");
-    setPopupOpen(!popupOpen);
-    setPopupContent(<Login />);
+    const ldata = {
+      username: _username,
+      email: _username,
+      password: _password,
   };
-  const markAsRead = () => {
-    fetch(`${APIURL.apiUrl}/Notification/ReadNotifications/${Cookies.get("uid")}`).then(() => {
-      fetch(`${APIURL.apiUrl}/Notification/GetNotifications/${Cookies.get("uid")}`)
-      .then((response) => response.json()).then((data) => setNotifications(data));
+    try {
+      $.ajax({
+        type: "POST",
+        url: `${APIURL.apiUrl}/User/login`,
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(ldata),
+        success: function (response) {
+          Cookies.set("uid", response.id);
+          Cookies.set("username", response.username);
+          window.location.reload();
+        },
     });
+    } catch (ex) {
+      console.error(ex);
+      setResponseMessage(
+        new ResponseMessage("Sikertelen bejelentkezés !", "DANGER")
+      );
     }
-    
-setTimeout(() => {
-  if(Cookies.get("uid") == null) return;
-  updateNotifs();
-}, 500)
+  };
+  useEffect(() => {
+        setContent(loginH);
+  }, [navigator])
+
+  const registerH = () => {
   return (
     <>
-      <Popup content={popupContent} title={popupTitle} isOpen={popupOpen} />
-      <div className="nav">
-        <div className="container">
-          <div className="login_info d-flex justify-content-between mt-3">
-            <p className="email">
-              <FaEnvelope className="me-2" />
-              info@gamehub.hu
-            </p>
-            <div className="d-flex">
-              <div onClick={() => {
-                if(Cookies.get("uid") != null){
-                  navigator("/profile")
-                }
-              }}>
-                <p className="login" onClick={toggleLoginPopup}>
-                  <img src={loginPng} alt="" className="me-2" />
-                  {Cookies.get("username") != null
-                    ? Cookies.get("username")
-                    : "Bejelentkezés"}
-                </p>
-              </div>
-              <button
-                className="custom-btn backround-main ms-4"
-                onClick={logout}
-                style={{
-                  marginTop: "-1px",
-                  height: "30px",
-                  display: Cookies.get("uid") != null ? "block" : "none",
-                }}>
-                Kijelentkezés
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <nav className="navbar navbar-expand-lg ">
-        <div className="container">
-          <a className="navbar-brand" href="/">
-            <Icon className="logo"/>
-          </a>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <div className="">
-              <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                {navLink.map((i) => (
-                  <li className="nav-item">
-                    <Link
-                      className={`nav-link  ${
-                        location.pathname == i.path ? "navActive" : ""
-                      }`}
-                      to={i.path}>
-                      {i.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="ms-auto d-flex">
-              <div className="dropdown">
-                <button
-                  className="btn  dropdown-toggle"
-                  type="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                  onClick={(event) => markAsRead()}
-                  >
-                  <FaBell size={22} className="" />
-                  <span className="bellcount" id="bellcount">{Cookies.get("uid") != null ? notifications.filter(i => i.notification.read == 0).length > 9 ? "9+" : notifications.filter(i => i.notification.read == 0).length : 0}</span>
-                </button>
+      <div className="login">
+      <label className="text-light mb-2  mt-3">
+          Email
+        </label>
+        <div className="input-group mb-3">
+          <input
+            type="text"
+            className="form-control custom-btn text-black"
+            ref={email}
 
-                <div className="dropdown-menu alert-dd ">
-                  {Cookies.get("uid") != null ? notifications.map(i => (
-                    <NotificationItem notification={i}/>
-                  )): ""}
-                </div>
+          />
               </div>
-              <div>
-                <div className="carticon" onClick={() => navigator("/cart")}>
-                  <MdShoppingCart size={25} />
-                  <span className="cartcount bg-warning">
-                    {Cookies.get("uid") == null ? "0" : cartinfo[0]}
-                  </span>
-                </div>
-              </div>
+        <label className="text-light mb-2  mt-3">
+          Név
+        </label>
+        <div className="input-group mb-3">
+          <input
+            type="text"
+            className="form-control custom-btn text-black"
+            ref={name}
+
+          />
             </div>
+        <label className="text-light mb-2  mt-3">
+          Felhasználónév
+        </label>
+        <div className="input-group mb-3">
+          <input
+            type="text"
+            className="form-control custom-btn text-black"
+            ref={username}
+          />
+          </div>
+        <label className="text-light mb-2">Jelszó</label>
+        <div className="input-group mb-3">
+          <input
+            type="password"
+            className="form-control custom-btn text-black"
+            ref={password}
+          />
+        </div>
+        <p className="text-center">
+          {" "}
+          {responseMessage == null ? "" : responseMessage.message}
+        </p>
+        <div className="input-group mb-3">
+          <button
+            className="form-control backround-main custom-btn"
+            onClick={REGISTER}>
+            Regisztráció
+          </button>
+            </div>
+        <div className="d-flex justify-content-center">
+          <p className="text-main">Már van fiókom</p>
+                </div>
+              </div>
+    </>
+    )
+  }
+  const REGISTER = () => {
+    const _username = username.current.value;
+    const _password = password.current.value;
+    const _name = name.current.value;
+    const _email = email.current.value;
+    if(_username.length == 0 || _password.length == 0 || _name.length == 0 | _email.length == 0){
+      return setResponseMessage(
+        new ResponseMessage("Hiányzó adatok !", "DANGER")
+      );
+    }
+    const data = {
+      "name": _name,
+      "username": _username,
+      "email": _email,
+      "password": _password,
+      "avatar": " "
+    }
+    try {
+      $.ajax({
+        type: "POST",
+        url: `${APIURL.apiUrl}/User/register`,
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(data),
+        success: function (response) {
+          Cookies.set("uid", response.id);
+          Cookies.set("username", response.username);
+          window.location.reload();
+        },
+        error: function (response) {
+          setResponseMessage(
+            new ResponseMessage("Sikertelen bejelentkezés !", "DANGER")
+          );
+        },
+      });
+    } catch (ex) {
+      console.error(ex);
+    }
+
+
+
+  }
+  const openReg = () => {
+      setContent(registerH);
+      document.getElementById("popuptitle").innerHTML = "Regisztráció";
+      document.getElementById("popup").style.top = "10%";
+  }
+  const loginH = () => {
+    return (<>
+    <div className="login">
+        <label className="text-light mb-2  mt-3">
+          Felhasználónév vagy email
+        </label>
+        <div className="input-group mb-3">
+          <input
+            type="text"
+            className="form-control custom-btn text-black"
+            ref={username}
+          />
+                </div>
+        <label className="text-light mb-2">Jelszó</label>
+        <div className="input-group mb-3">
+          <input
+            type="password"
+            className="form-control custom-btn text-black"
+            ref={password}
+          />
+              </div>
+        <p className="text-center">
+          {" "}
+          {responseMessage == null ? "" : responseMessage.message}
+        </p>
+        <div className="input-group mb-3">
+          <button
+            className="form-control backround-main custom-btn"
+            onClick={login}>
+            Bejelentkezés
+          </button>
+            </div>
+        <div className="d-flex justify-content-between">
+          <p className="text-main">Elfelejtettem a jelszavamat!</p>
+          <p className="text-main" onClick={openReg}>Még nincs fiókom</p>
           </div>
         </div>
-      </nav>
+      </>)
+  }
+  return (
+    <>
+      {content}
     </>
   );
 }
-export default Home;
+export default Login;

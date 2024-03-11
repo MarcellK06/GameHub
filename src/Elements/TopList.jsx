@@ -7,7 +7,7 @@ import APIURL from "./../APIURL.json";
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa6";
 import { PiListBold } from "react-icons/pi";
 import {motion} from 'framer-motion';
-import JSON from '../../backup.json';
+import JSON from '../backup.json';
 function TopList() {
   const [games, setGames] = useState([]);
   const navigator = useNavigate();
@@ -27,6 +27,7 @@ function TopList() {
   }
 
   if (loading === true){
+    console.log(JSON[0].games)
     setGames(JSON[0].games);
     setLoading(false)
   }
@@ -50,7 +51,7 @@ function TopList() {
               </div>
           {games.map((i, idx) => (
              <> 
-              <div className="validitem item" id={`game${idx}`} onClick={() => navigator(`/game/${i.game.linkId}`)}>
+              <div className="validitem item" id={`game${idx}`} onClick={() => navigator(`/game/${i.linkId}`)}>
               <motion.div
              
              initial={{ opacity: 0, z: 50 }}
@@ -63,10 +64,10 @@ function TopList() {
             
              }}>
               <div>
-                  <img className="shopGameBanner" src={i.game.banner} alt=""/>
+                  <img className="shopGameBanner" src={i.banner} alt=""/>
                 </div>
                   <PiListBold size={40} className="gameHover"/>
-                <p className="shopGameName"> {i.game.name}</p>
+                <p className="shopGameName"> {i.name}</p>
                </motion.div>
                 
               </div>
