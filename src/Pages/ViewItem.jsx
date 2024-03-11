@@ -14,8 +14,9 @@ function ViewItem() {
   const { linkId } = useParams();
   const [game, setGame] = useState(" ");
   var [loading, setLoading] = useState(true);
+  var backup = true;
   if (loading) {
-    /*
+    if (!backup) {
     fetch(`${APIURL.apiUrl}/Game/GetGameByLinkId/${linkId}`)
       .then((response) => response.json())
       .then((data) => {
@@ -27,16 +28,19 @@ function ViewItem() {
       })
       .catch((err) => console.error(err))
       .finally(() => setLoading(false));
-      */
+    }
     
   }
   useEffect(() => {
+    if (backup) {
     var jatek = JSON[0].games.find(i => i.linkId == linkId);
     loading = false;
     setGame(jatek);
+    }
    
   }, [])
   const addGameToCart = (id) => {
+    if (!backup) {
     if (uid == null) return window.alert("Ehhez bejelentkezés szükséges!");
     const data = {
       userId: uid,
@@ -55,6 +59,10 @@ function ViewItem() {
         console.log(res);
       },
     });
+  }
+  if (backup) {
+    return window.alert("A weboldal biztonsági mentésről fut, ez a művelet nem engedélyezett!");
+  }
   };
   
     return (
