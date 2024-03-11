@@ -7,7 +7,7 @@ import APIURL from "./../APIURL.json";
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa6";
 import { PiListBold } from "react-icons/pi";
 import {motion} from 'framer-motion';
-import JSON from '../../backup.json';
+import JSON from '../backup.json';
 function TopList() {
   const [games, setGames] = useState([]);
   const navigator = useNavigate();
@@ -27,6 +27,7 @@ function TopList() {
   }
 
   if (loading === true){
+    console.log(JSON[0].games);
     setGames(JSON[0].games);
     setLoading(false)
   }
