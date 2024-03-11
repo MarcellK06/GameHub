@@ -52,6 +52,7 @@ function Login() {
           if(user.password == _password){
             Cookies.set("uid", JSON[0].users.indexOf(user));
             Cookies.set("username", _username);
+            window.location.reload();
           }
         } else {
           return window.alert('Sikertelen bejelenthezés !');
