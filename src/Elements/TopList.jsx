@@ -27,7 +27,6 @@ function TopList() {
   }
 
   if (loading === true){
-    console.log(JSON[0].games)
     setGames(JSON[0].games);
     setLoading(false)
   }
