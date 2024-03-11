@@ -36,7 +36,7 @@ function GamesItem({game}) {
           />
         </div>
         <p className="gamename text-center mt-3">{game.name}</p>
-        <p className="price">{game.shop.price}</p>
+        <p className="price">{game.price}</p>
         <button className="custom-btn btn w-100 backbtn" onClick={event => addGameToCart(game.id)}>Kosárba</button>
        </div>
   );
