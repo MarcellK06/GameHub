@@ -1,8 +1,7 @@
 [
     {
         "games": [
-            {
-                "1": {
+                {
                     "categoryId": "1",
                     "name": "Grand Theft Auto V",
                     "linkId": "grand_theft_auto_v",
@@ -14,7 +13,7 @@
 
 
                 },
-                "2": {
+                {
                     "categoryId": "2",
                     "name": "Forza Horizon 5",
                     "linkId": "forza_horizon_5",
@@ -26,8 +25,6 @@
 
 
                 }
-
-            }
         ],
         "users" : [
             {

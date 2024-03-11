@@ -7,6 +7,7 @@ import APIURL from "./../APIURL.json";
 import { FaArrowRight, FaArrowLeft } from "react-icons/fa6";
 import { PiListBold } from "react-icons/pi";
 import {motion} from 'framer-motion';
+import JSON from '../../backup.json';
 function TopList() {
   const [games, setGames] = useState([]);
   const navigator = useNavigate();
@@ -26,12 +27,8 @@ function TopList() {
   }
 
   if (loading === true){
-    fetch(`${APIURL.apiUrl}/Game/GetGame/0`)
-      .then((response) => response.json())
-      .then((data) => {
-        setGames(data);
-      })
-      .catch((err) => console.error(err)).finally(() => setLoading(false));
+    setGames(JSON[0].games);
+    setLoading(false)
   }
   if (inFocus != currentSelected)
   {
