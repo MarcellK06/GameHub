@@ -48,7 +48,7 @@ function Games() {
     if (backup){
     var data = JSON[0].categories;
       setCategories(data); 
-    var v_games = JSON[0].categories;
+    var v_games = JSON[0].games;
     setGames(v_games);
     setToShowGames(v_games);
     setLoading(false);
@@ -69,7 +69,7 @@ function Games() {
 }
 const setActiveCategory = (id) => {
   console.log(id);
-  var toSet = games.filter((i) => i.game.categoryId == id);
+  var toSet = games.filter((i) => i.categoryId == id);
   console.log(toSet);
   setToShowGames(toSet);
 }
