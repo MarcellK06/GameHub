@@ -21,10 +21,11 @@ function Games() {
 
   const Search = () => {
     const _svalue = searchRef.current.value;
-    var games = JSON.games;
+    var games = JSON[0].games;
     if (_svalue.length >= 3) {
       if (backup){
-      var found = games.find(i => i.name.includes(_svalue));
+      var found = games.filter(i => i.name.toLowerCase().includes(_svalue.toLowerCase()));
+      console.log(found);
       setSearchResult(found);
       setSearchInfo(found.length == 0 ? "A játék nem található!": "");
       }
